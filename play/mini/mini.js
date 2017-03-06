@@ -26,6 +26,10 @@ addAsset("yaySquare","../img/yay_square.png");
 addAsset("yaySquareBlink","../img/yay_square_blink.png");
 addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
+addAsset("whiteCircle","../img/circle_white.png");
+addAsset("whiteTriangle","../img/triangle_white.png");
+addAsset("yellowTriangle","../img/triangle_yellow.png");
+
 
 var IS_PICKING_UP = false;
 
@@ -126,9 +130,10 @@ function Draggable(x,y){
 				self.sameness = (same/neighbors);
 			}else{
 				self.sameness = 1;
+				self.shaking = true;
 			}
 			if(self.sameness<BIAS || self.sameness>NONCONFORM){
-				self.shaking = true;
+				self.shaking = false;
 			}
 			if(self.sameness>0.99){
 				self.bored = true;
@@ -161,6 +166,7 @@ function Draggable(x,y){
 
 	self.frame = 0;
 	self.blinking=0;
+
 	self.draw = function(){
 		ctx.save();
 		ctx.translate(self.x,self.y);
@@ -178,30 +184,42 @@ function Draggable(x,y){
 
 		// Draw thing
 		var img;
+		
+		// Set delay to only show change after some time
+		//var delayMillis = 1000;
+
 		if(self.color=="triangle"){
 			if(self.shaking){
-				img = images.sadTriangle;
+				img = images.whiteCircle;
 			}else if(self.bored){
-				img = images.mehTriangle;
+				img = images.whiteCircle;
 			}else{
 				if(self.blinking>0){
 					self.blinking--;
-					img = images.yayTriangleBlink;
+					if(self.dragged) {				
+						img = images.whiteCircle;
+					}else {
+						img = images.yellowTriangle;
+
+					}
 				}else{
-					img = images.yayTriangle;
+					img = images.whiteCircle; //remove blinking soon. do we need it?
 				}
 			}
 		}else{
 			if(self.shaking){
 				img = images.sadSquare;
 			}else if(self.bored){
-				img = images.mehSquare;
+				//img = images.mehSquare;
+				img = images.yellowTriangle;
 			}else{
 				if(self.blinking>0){
 					self.blinking--;
-					img = images.yaySquareBlink;
+					//img = images.yaySquareBlink;
+					img = images.yellowTriangle;
 				}else{
-					img = images.yaySquare;
+					//img = images.yaySquare;
+					img = images.yellowTriangle;
 				}
 			}
 		}
@@ -214,12 +232,6 @@ function Draggable(x,y){
 			self.dangle += self.dangleVel;
 			self.dangle *= 0.9;
 		}
-
-		/**
-		ANGER
-		ctx.translate(Math.random()*4-2,Math.random()*4-2);
-		ctx.rotate(Math.random()*0.2-0.1);
-		**/
 
 		ctx.drawImage(img,-PEEP_SIZE/2,-PEEP_SIZE/2,PEEP_SIZE,PEEP_SIZE);
 		ctx.restore();
@@ -349,7 +361,7 @@ function step(){
 window.requestAnimFrame = window.requestAnimationFrame ||
 	window.webkitRequestAnimationFrame ||
 	window.mozRequestAnimationFrame ||
-	function(callback){ window.setTimeout(callback, 1000/60); };
+	function(callback){ window.setTimeout(callback, 1000/60); }; //originally 1000/60;
 
 (function animloop(){
 	requestAnimFrame(animloop);
