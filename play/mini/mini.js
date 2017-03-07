@@ -4,7 +4,7 @@ var ctx = canvas.getContext("2d");
 var NONCONFORM = 1.00;
 var BIAS = 0.33;
 
-var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5);
+var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5); //a^2 + b^2
 
 var assetsLeft = 0;
 var onImageLoaded = function(){
@@ -199,26 +199,25 @@ function Draggable(x,y){
 					if(self.dragged) {				
 						img = images.whiteCircle;
 					}else {
-						img = images.yellowTriangle;
-
+						img = images.whiteCircle;
 					}
 				}else{
-					img = images.whiteCircle; //remove blinking soon. do we need it?
-				}
+					img = images.whiteCircle;
+					if(!self.shaking && !self.dragged && lastPressed){
+						self.color = "square";
+					}
+				}			
 			}
 		}else{
 			if(self.shaking){
-				img = images.sadSquare;
+				img = images.yellowTriangle;
 			}else if(self.bored){
-				//img = images.mehSquare;
 				img = images.yellowTriangle;
 			}else{
 				if(self.blinking>0){
 					self.blinking--;
-					//img = images.yaySquareBlink;
 					img = images.yellowTriangle;
 				}else{
-					//img = images.yaySquare;
 					img = images.yellowTriangle;
 				}
 			}
