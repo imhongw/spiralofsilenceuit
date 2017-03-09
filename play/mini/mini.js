@@ -29,11 +29,13 @@ addAsset("sadSquare","../img/sad_square.png");
 addAsset("whiteCircle","../img/circle_white.png");
 addAsset("whiteTriangle","../img/triangle_white.png");
 addAsset("yellowTriangle","../img/triangle_yellow.png");
+addAsset("sadCircle","../img/unhappy_circle_white.png");
 
 
 var IS_PICKING_UP = false;
 
 var lastMouseX, lastMouseY;
+
 
 function Draggable(x,y){
 	
@@ -104,6 +106,28 @@ function Draggable(x,y){
 
 	}
 
+	//  var countS, countT;
+	//  var data;
+
+	//  self.counting = function(){
+	// 	var countT = 0;	
+	// 	var countS = 0;
+	// 	for(var y=0;y<GRID.length;y++){
+	// 		for(var x=0;x<GRID[y].length;x++){
+
+	// 			data = GRID[y][x];
+	// 			//console.log(self.color);
+	// 			if(data == 1) {
+	// 				countS++;
+	// 			}
+	// 			if(data == 2) {
+	// 			countT++;
+	// 			}
+	// 		}
+	// 	}
+	// 	console.log(countS + " S+T " + countT);
+	// }
+
 	var lastPressed = false;
 	self.update = function(){
 
@@ -172,9 +196,9 @@ function Draggable(x,y){
 		ctx.translate(self.x,self.y);
 		if(self.shaking){
 			self.frame+=0.07;
-			ctx.translate(0,20);
+			ctx.translate(0,60);
 			ctx.rotate(Math.sin(self.frame-(self.x+self.y)/200)*Math.PI*0.05);
-			ctx.translate(0,-20);
+			ctx.translate(0,-50);
 		}
 
 		// Blinking
@@ -196,24 +220,23 @@ function Draggable(x,y){
 			}else{
 				if(self.blinking>0){
 					self.blinking--;
-					if(self.dragged) {				
+					if(self.dragged && !self.shaking) {				
 						img = images.whiteCircle;
 					}else {
-						img = images.whiteCircle;
+						img = images.sadCircle;
 					}
 				}else{
-					img = images.whiteCircle;
-					if(!self.shaking && !self.dragged && lastPressed){
-						self.color = "square";
-					}
+					img = images.sadCircle;
 				}			
 			}
-		}else{
+		}else if(self.color == "square") {
 			if(self.shaking){
 				img = images.yellowTriangle;
 			}else if(self.bored){
 				img = images.yellowTriangle;
 			}else{
+				//if(self.dragged && !self.shaking && self.blinking>0) {
+				//	self.blinking--;
 				if(self.blinking>0){
 					self.blinking--;
 					img = images.yellowTriangle;
@@ -221,7 +244,23 @@ function Draggable(x,y){
 					img = images.yellowTriangle;
 				}
 			}
+		} else { //sad isolated
+			if(self.shaking) {
+				img = images.whiteCircle;
+			}else if(self.bored) {
+				img = images.whiteCircle;
+			}else {
+				img = images.whiteCircle;
+				if(self.dragged && !self.shaking) {
+					img = images.sadCircle;
+				}else {
+					img = images.yellowTriangle;
+				}
+			}
+
 		}
+
+		//self.counting();
 
 		// Dangle
 		if(self.dragged){
@@ -270,29 +309,6 @@ function render(){
 	lastMouseX = Mouse.x;
 	lastMouseY = Mouse.y;
 
-	// Done?
-	/*if(isDone()){
-		doneBuffer--;
-		if(doneBuffer==0){
-			doneAnimFrame = 30;
-			console.log("DONE");
-			
-			if(window.SOLVE_MESSAGE){
-				window.top.showEasterEgg(window.SOLVE_MESSAGE);
-			}
-
-		}
-	}else{
-		doneBuffer = 30;
-	}
-	if(doneAnimFrame>0){
-		doneAnimFrame--;
-		var opacity = ((doneAnimFrame%15)/15);
-		canvas.style.background = "rgba(255,255,255,"+opacity+")";
-	}else{
-		canvas.style.background = "none";
-	}*/
-
 }
 
 var doneAnimFrame = 0;
@@ -305,6 +321,106 @@ function isDone(){
 	}
 	return true;
 }
+
+// window.writeStats = function(){
+
+// 	if(!draggables || draggables.length==0) return;
+
+// 	// Average Sameness Ratio
+// 	var total = 0;
+// 	for(var i=0;i<draggables.length;i++){
+// 		var d = draggables[i];
+// 		total += d.sameness || 0;
+// 	}
+// 	var avg = total/draggables.length;
+// 	if(isNaN(avg)) debugger;
+
+// 	// If stats oversteps, bump back
+// 	if(STATS.steps>320+STATS.offset){
+// 		STATS.offset += 120;
+// 		var tctx = tmp_stats.getContext("2d");
+// 		tctx.clearRect(0,0,tmp_stats.width,tmp_stats.height);
+// 		tctx.drawImage(stats_canvas,0,0);
+// 		stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
+// 		stats_ctx.drawImage(tmp_stats,-119,0);
+// 	}
+
+// 	// AVG -> SEGREGATION
+// 	var segregation = (avg-0.5)*2;
+// 	if(segregation<0) segregation=0;
+
+// 	// Graph it
+// 	stats_ctx.fillStyle = "#cc2727";
+// 	var x = STATS.steps - STATS.offset;
+// 	var y = 250 - segregation*250+10;
+// 	console.log(x + y);
+// 	stats_ctx.fillRect(x,y,1,5);
+
+// 	// Text
+// 	stats_text.innerHTML = Math.floor(segregation*100)+"%";
+// 	stats_text.style.top = Math.round(y-15)+"px";
+// 	stats_text.style.left = Math.round(x+35)+"px";
+
+// 	// Button
+// 	if(START_SIM){
+// 		document.getElementById("moving").classList.add("moving");
+// 	}else{
+// 		document.getElementById("moving").classList.remove("moving");
+// 	}
+
+// }
+
+var GRID_SIZE_WIDTH = GRID[0].length;
+var GRID_SIZE_HEIGHT = GRID.length;
+
+canvas.width = GRID_SIZE_WIDTH*TILE_SIZE+10;
+canvas.height = GRID_SIZE_HEIGHT*TILE_SIZE+10;
+
+var SQUARE_NORMAL = 1;
+var TRIANGLE_NORMAL = 2;
+var SQUARE_SAD = 3; 
+
+window.reset = function(){
+
+	START_SIM = false;
+
+	draggables = [];
+	for(var y=0;y<GRID.length;y++){
+		for(var x=0;x<GRID[y].length;x++){
+
+			var data = GRID[y][x];
+
+			if(data==0) continue;
+
+			var xx = TILE_SIZE*(x+0.5);
+			var yy = TILE_SIZE*(y+0.5);
+
+			var draggable = new Draggable(xx,yy);
+
+			switch(data) {
+				case SQUARE_NORMAL:
+					draggable.color = "square";
+					break;
+				case TRIANGLE_NORMAL:
+					draggable.color = "triangle";
+					break;
+				case SQUARE_SAD:
+					draggable.color = "sadCircle";
+					break;
+			}
+
+			//draggable.color = (data==2) ? "triangle" : (data == 1 ? "square" : ....); 
+			draggables.push(draggable);
+
+		}
+	}
+
+	// Write stats for first time
+	for(var i=0;i<draggables.length;i++){
+		draggables[i].update();
+	}
+};
+
 
 function step(){
 

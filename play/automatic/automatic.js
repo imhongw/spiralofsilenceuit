@@ -255,11 +255,12 @@ window.reset = function(){
 }
 
 window.render = function(){
-
 	if(assetsLeft>0 || !draggables) return;
 	
 	// Is Stepping?
 	if(START_SIM){
+		
+
 		step();
 	}
 
@@ -321,7 +322,7 @@ tmp_stats.width = stats_canvas.width;
 tmp_stats.height = stats_canvas.height;
 
 window.writeStats = function(){
-
+	console.log("something is written");
 	if(!draggables || draggables.length==0) return;
 
 	// Average Sameness Ratio
@@ -379,7 +380,6 @@ function isDone(){
 }
 
 function step(){
-
 	// Get all shakers
 	var shaking = [];
 	for(var i=0;i<draggables.length;i++){

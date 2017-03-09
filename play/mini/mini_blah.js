@@ -4,6 +4,10 @@ var GRID_SIZE_HEIGHT = GRID.length;
 canvas.width = GRID_SIZE_WIDTH*TILE_SIZE+10;
 canvas.height = GRID_SIZE_HEIGHT*TILE_SIZE+10;
 
+
+/**
+ * Not really in use anymore.
+ **/
 window.reset = function(){
 
 	START_SIM = false;
@@ -13,8 +17,8 @@ window.reset = function(){
 		for(var x=0;x<GRID[y].length;x++){
 
 			var data = GRID[y][x];
-			if(data==0) continue;
 
+			if(data==0) continue;
 			var xx = TILE_SIZE*(x+0.5);
 			var yy = TILE_SIZE*(y+0.5);
 
