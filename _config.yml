@@ -1,1 +1,7 @@
+title: Spiral of Silence
+
 theme: jekyll-theme-architect
+
+navbar-links:
+  - Home: ""
+  - Simulation: "simulation"
