@@ -28,6 +28,11 @@ addAsset("yaySquare","../img/yay_square.png");
 addAsset("yaySquareBlink","../img/yay_square_blink.png");
 addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
+addAsset("whiteCircle","../img/circle_white.png");
+addAsset("whiteTriangle","../img/triangle_white.png");
+addAsset("yellowTriangle","../img/triangle_yellow.png");
+addAsset("sadCircle","../img/unhappy_circle_white.png");
+
 
 var IS_PICKING_UP = false;
 var lastMouseX, lastMouseY;
@@ -216,6 +221,7 @@ function Draggable(x,y){
 }
 
 var draggables;
+//reset function allows you to set random tiles on the board.
 function reset(){
 	draggables = [];
 	for(var x=0;x<10;x++){
@@ -236,7 +242,7 @@ function render(){
 	
 	// Draw
 	Mouse.isOverDraggable = IS_PICKING_UP;
-	ctx.clearRect(0,0,canvas.width,canvas.height);
+	ctx.clearRect(0,0,canvas.width,canvas.height); //WIDTH AND HEIGHT AT 550
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
 		d.update();
