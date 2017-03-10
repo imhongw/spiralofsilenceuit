@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+	<link href="mini.css" rel="stylesheet" type="text/css">
+	<style>
+	body{
+		background: url(introdragging.png);
+		background-repeat: no-repeat;
+	}
+	</style>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+	<div id="reset" onclick="reset()">reset</div>
+
+	<script>
+	var TILE_SIZE = 60;
+	var PEEP_SIZE = 50;
+
+	var GRID = [
+		[0,0,0,0,0,0,0,0,0,0,0,0],
+		[3,0,0,0,0,0,0,0,0,0,0,0],
+		[0,0,0,3,0,1,0,1,1,1,1,1],
+		[0,2,0,0,0,0,1,0,1,0,1,1],
+		[0,0,0,0,0,0,0,1,1,1,1,1],
+		[3,0,3,0,0,0,1,0,1,0,1,0],
+		[0,0,0,0,0,0,0,0,0,0,0,0]
+	];
+	</script>
+	<script src="../lib/Mouse.js"></script>
+	<script src="mini.js"></script>
+	<script>
+		window.IS_IN_SIGHT = true;
+	</script>
+</body>
+</html>
+
