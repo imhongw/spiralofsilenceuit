@@ -111,9 +111,12 @@ function Draggable(x,y){
 		// Shakiness?
 		self.shaking = false;
 		self.bored = false;
+		self.changeable = false;
 		if(!self.dragged){
 			var neighbors = 0;
 			var same = 0;
+			var notSame = 0;
+			//console.log(draggables.length);
 			for(var i=0;i<draggables.length;i++){
 				var d = draggables[i];
 				if(d==self) continue;
@@ -123,6 +126,8 @@ function Draggable(x,y){
 					neighbors++;
 					if(d.color==self.color){
 						same++;
+					}else {
+						notSame++;
 					}
 				}
 			}
@@ -130,7 +135,11 @@ function Draggable(x,y){
 				self.shaking = true;
 			}
 			if(neighbors==0 || (same/neighbors)>0.99){
+				self.shaking = true;
 				self.bored = true;
+			}
+			if(neighbors>0 && notSame>0) {
+				self.changeable = true;
 			}
 		}
 
@@ -177,30 +186,47 @@ function Draggable(x,y){
 
 		// Draw thing
 		var img;
-		if(self.color=="triangle"){
+		//circles are the good guys
+		if(self.color=="circle"){ 
 			if(self.shaking){
-				img = images.sadTriangle;
+				img = images.whiteCircle;
 			}else if(self.bored){
-				img = images.mehTriangle;
+				img = images.whiteCircle;
 			}else{
-				if(self.blinking>0){
-					self.blinking--;
-					img = images.yayTriangleBlink;
-				}else{
-					img = images.yayTriangle;
-				}
+					if(self.dragged && !self.shaking) {		
+						console.log("comes here");		
+						img = images.whiteCircle;
+					}else {
+						img = images.sadCircle;
+					}			
 			}
-		}else{
-			if(self.shaking){
-				img = images.sadSquare;
-			}else if(self.bored){
-				img = images.mehSquare;
-			}else{
-				if(self.blinking>0){
-					self.blinking--;
-					img = images.yaySquareBlink;
-				}else{
-					img = images.yaySquare;
+		}else if(self.color == "spreader") {
+			img = images.yellowTriangle;
+			if(self.changeable) {
+				if(Math.random()<0.005){
+					self.color = "circle";
+				}
+			}else {
+				self.color = "spreader";
+			}
+
+		} else {
+			if(self.shaking) {
+				img = images.whiteTriangle;
+			}else if(self.bored) {
+				img = images.whiteTriangle;
+			}else {
+				img = images.whiteCircle;
+				if(self.dragged && !self.shaking && !lastPressed) {
+					img = images.whiteCircle;
+				}else {
+					if(self.changeable && self.x == pickupX && self.y == pickupY) {
+						img = images.whiteCircle;
+						// self.color = "circle";
+					}else {
+						img = images.whiteCircle;
+						//self.color = "circle";
+					}
 				}
 			}
 		}
@@ -220,15 +246,25 @@ function Draggable(x,y){
 
 }
 
+
+
 var draggables;
 //reset function allows you to set random tiles on the board.
 function reset(){
 	draggables = [];
-	for(var x=0;x<10;x++){
-		for(var y=0;y<10;y++){
-			if(Math.random()<0.80){
+	for(var x=4;x<5;x++){
+		for(var y=2;y<3;y++){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = (Math.random()<0.5) ? "triangle" : "square";
+				draggable.color = "circle";
+				draggables.push(draggable);
+			
+		}
+	}
+	for(var x=0;x<10;x++){
+		for(var y=5;y<9;y++){
+			if(Math.random()<0.95){
+				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
+				draggable.color = (Math.random()<0.5) ? "spreader" : "spreader";
 				draggables.push(draggable);
 			}
 		}
