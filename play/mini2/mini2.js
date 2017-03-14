@@ -336,54 +336,6 @@ function isDone(){
 	return true;
 }
 
-// window.writeStats = function(){
-
-// 	if(!draggables || draggables.length==0) return;
-
-// 	// Average Sameness Ratio
-// 	var total = 0;
-// 	for(var i=0;i<draggables.length;i++){
-// 		var d = draggables[i];
-// 		total += d.sameness || 0;
-// 	}
-// 	var avg = total/draggables.length;
-// 	if(isNaN(avg)) debugger;
-
-// 	// If stats oversteps, bump back
-// 	if(STATS.steps>320+STATS.offset){
-// 		STATS.offset += 120;
-// 		var tctx = tmp_stats.getContext("2d");
-// 		tctx.clearRect(0,0,tmp_stats.width,tmp_stats.height);
-// 		tctx.drawImage(stats_canvas,0,0);
-// 		stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
-// 		stats_ctx.drawImage(tmp_stats,-119,0);
-// 	}
-
-// 	// AVG -> SEGREGATION
-// 	var segregation = (avg-0.5)*2;
-// 	if(segregation<0) segregation=0;
-
-// 	// Graph it
-// 	stats_ctx.fillStyle = "#cc2727";
-// 	var x = STATS.steps - STATS.offset;
-// 	var y = 250 - segregation*250+10;
-// 	console.log(x + y);
-// 	stats_ctx.fillRect(x,y,1,5);
-
-// 	// Text
-// 	stats_text.innerHTML = Math.floor(segregation*100)+"%";
-// 	stats_text.style.top = Math.round(y-15)+"px";
-// 	stats_text.style.left = Math.round(x+35)+"px";
-
-// 	// Button
-// 	if(START_SIM){
-// 		document.getElementById("moving").classList.add("moving");
-// 	}else{
-// 		document.getElementById("moving").classList.remove("moving");
-// 	}
-
-// }
-
 var GRID_SIZE_WIDTH = GRID[0].length;
 var GRID_SIZE_HEIGHT = GRID.length;
 
