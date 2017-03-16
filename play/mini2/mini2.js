@@ -106,28 +106,6 @@ function Draggable(x,y){
 
 	}
 
-	//  var countS, countT;
-	//  var data;
-
-	//  self.counting = function(){
-	// 	var countT = 0;	
-	// 	var countS = 0;
-	// 	for(var y=0;y<GRID.length;y++){
-	// 		for(var x=0;x<GRID[y].length;x++){
-
-	// 			data = GRID[y][x];
-	// 			//console.log(self.color);
-	// 			if(data == 1) {
-	// 				countS++;
-	// 			}
-	// 			if(data == 2) {
-	// 			countT++;
-	// 			}
-	// 		}
-	// 	}
-	// 	console.log(countS + " S+T " + countT);
-	// }
-
 	var lastPressed = false;
 	self.update = function(){
 
@@ -195,8 +173,8 @@ function Draggable(x,y){
 		ctx.save();
 		ctx.translate(self.x,self.y);
 		if(self.shaking){
-			self.frame+=0.07;
-			ctx.translate(0,60);
+			self.frame+=0.05;
+			ctx.translate(10,70);
 			ctx.rotate(Math.sin(self.frame-(self.x+self.y)/200)*Math.PI*0.05);
 			ctx.translate(0,-50);
 		}
@@ -209,10 +187,26 @@ function Draggable(x,y){
 		// Draw thing
 		var img;
 		
-		// Set delay to only show change after some time
-		//var delayMillis = 1000;
-
-		if(self.color=="circle"){
+		if(self.color == "opTriangle") {
+			if(self.shaking){
+				img = images.whiteTriangle;
+			}else if(self.bored && !perceived){
+				img = images.whiteCircle;
+			}else if(self.bored && perceived) {
+				img = images.whiteTriangle
+			}else{
+				if(perceived) {
+					img = images.whiteTriangle;
+				}else {
+					img = images.whiteCircle;
+				}
+				// if(self.bored && lastPressed){
+				// 	img = images.yellowTriangle;
+				// }else{
+				// 	img = images.yellowTriangle;
+				// }
+			}
+		}else if(self.color=="circle"){
 			if(self.shaking){
 				img = images.whiteCircle;
 			}else if(self.bored){
@@ -229,19 +223,6 @@ function Draggable(x,y){
 					img = images.sadCircle;
 				}			
 			}
-		}else if(self.color == "opTriangle") {
-			if(self.shaking){
-				img = images.yellowTriangle;
-			}else if(self.bored){
-					img = images.whiteTriangle;
-				//}
-			}else{
-				if(self.bored && lastPressed){
-					img = images.yellowTriangle;
-				}else{
-					img = images.yellowTriangle;
-				}
-			}
 		} else if(self.color == "noOptriangle") {
 			if(self.shaking){
 				img = images.yellowTriangle;
@@ -254,8 +235,7 @@ function Draggable(x,y){
 					img = images.yellowTriangle;
 				}
 			}
-		} else { //sad isolated
-			//console.log(Mouse.y);
+		} else { 
 			if(self.shaking) {
 				img = images.whiteCircle;
 			}else if(self.bored) {
@@ -266,7 +246,7 @@ function Draggable(x,y){
 					img = images.sadCircle;
 				}else {
 					if(pressedTime && !lastPressed && !self.dragged)
-						img = images.yellowTriangle;
+						img = images.whiteTriangle;
 					else
 						img = images.sadCircle;
 				}
@@ -354,6 +334,15 @@ window.aftersometime = function() {
 		pressedTime = true;
 	}else {
 		pressedTime=false;
+	}
+}
+
+var perceived = false;
+window.perceive = function() {
+	if(perceived == false) {
+		perceived = true;
+	}else {
+		perceived = false;
 	}
 }
 

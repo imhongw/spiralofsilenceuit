@@ -11,12 +11,23 @@
 </head>
 <body>
 	<canvas id="canvas"></canvas>
-	<div id="reset" onclick="reset()">reset</div>
+	
+	<ul>
+  	<li><a href="#" class="round red" onclick="reset()"> Reset <span class="round"> Need a restart? </span></a></li>
+	</ul> 
 
+
+	<!--present future-->
 	<div class="switch">
-  	<input id="cmn-toggle-7" class="cmn-toggle cmn-toggle-yes-no" type="checkbox" onclick="aftersometime()">
-  	<label for="cmn-toggle-7" data-on="Future" data-off="Present"></label>
+  	<input id="cmn-toggle-71" class="cmn-toggle cmn-toggle-yes-no" type="checkbox" onclick="aftersometime()">
+  	<label for="cmn-toggle-71" data-on="Future" data-off="Present"></label>
 	</div>
+	<!-- perceived toggle -->
+	<div class="switch">
+  	<input id="cmn-toggle-7" class="cmn-toggle1 cmn-toggle-yes-no1" type="checkbox" onclick="perceive()">
+  	<label for="cmn-toggle-7" data-on="Perceived" data-off="Actual"></label>
+	</div> 
+	
 
 	<script>
 	var TILE_SIZE = 60;
@@ -24,8 +35,8 @@
 
 	var GRID = [
 		[0,0,0,0,0,0,0,0,0,0,0,0],
-		[3,0,0,0,0,0,1,0,1,0,0,0],
-		[0,0,0,3,0,1,0,1,1,1,1,1],
+		[3,0,3,0,0,0,1,0,1,0,0,0],
+		[0,0,0,0,0,1,0,1,1,1,1,1],
 		[0,2,0,0,0,1,1,0,1,0,1,0],
 		[0,0,0,0,0,1,1,1,1,1,1,1],
 		[3,0,3,0,0,0,1,0,1,1,0,0],
