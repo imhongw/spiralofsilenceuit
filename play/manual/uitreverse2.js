@@ -264,30 +264,7 @@ function reset(){
 			
 		}
 	}
-	for(var x=0;x<1;x++){
-		for(var y=0;y<5;y++){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
-				draggables.push(draggable);	
-		}
-	}
-	for(var x=1;x<3;x++){
-		for(var y=0;y<1;y++){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
-				draggables.push(draggable);
-			
-		}
-	}
 	for(var x=2;x<3;x++){
-		for(var y=1;y<3;y++){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
-				draggables.push(draggable);
-			
-		}
-	}
-	for(var x=4;x<5;x++){
 		for(var y=2;y<3;y++){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				draggable.color = "spreader";
@@ -295,39 +272,7 @@ function reset(){
 			
 		}
 	}
-	for(var x=5;x<6;x++){
-		for(var y=1;y<2;y++){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
-				draggables.push(draggable);
-			
-		}
-	}
-	for(var x=5;x<6;x++){
-		for(var y=3;y<4;y++){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
-				draggables.push(draggable);
-			
-		}
-	}
-	for(var x=5;x<7;x++){
-		for(var y=2;y<3;y++){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
-				draggables.push(draggable);
-			
-		}
-	}
-	for(var x=0;x<10;x++){
-		for(var y=5;y<9;y++){
-			if(Math.random()<0.90){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
-				draggables.push(draggable);
-			}
-		}
-	}
+
 	reverse = false;
 }
 reset();

@@ -11,7 +11,15 @@
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
+html {
+height: 100%;
+width: 100%;
+}
+
 body {
+  margin: 0px;
+  min-height: 100%;
+  width:100%;
   background: #add9e4;
   background: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
   background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #f7fbfc), color-stop(100%, #add9e4));
@@ -87,8 +95,8 @@ body {
 .reveal img,
 .reveal video,
 .reveal iframe {
-  max-width: 95%;
-  max-height: 95%; }
+  max-width: 4000px;
+  max-height: 4000px; }
 
 .reveal strong,
 .reveal b {
