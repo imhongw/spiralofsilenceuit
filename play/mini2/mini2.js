@@ -190,21 +190,16 @@ function Draggable(x,y){
 		if(self.color == "opTriangle") {
 			if(self.shaking){
 				img = images.whiteTriangle;
-			}else if(self.bored && !perceived){
-				img = images.whiteCircle;
-			}else if(self.bored && perceived) {
-				img = images.whiteTriangle
+			}else if(self.bored && !actual){
+				img = images.whiteTriangle;
+			}else if(self.bored && actual) {
+				img = images.whiteCircle
 			}else{
-				if(perceived) {
-					img = images.whiteTriangle;
-				}else {
+				if(actual) {
 					img = images.whiteCircle;
+				}else {
+					img = images.whiteTriangle;
 				}
-				// if(self.bored && lastPressed){
-				// 	img = images.yellowTriangle;
-				// }else{
-				// 	img = images.yellowTriangle;
-				// }
 			}
 		}else if(self.color=="circle"){
 			if(self.shaking){
@@ -337,12 +332,12 @@ window.aftersometime = function() {
 	}
 }
 
-var perceived = false;
-window.perceive = function() {
-	if(perceived == false) {
-		perceived = true;
+var actual = false;
+window.actualfunc = function() {
+	if(actual == false) {
+		actual = true;
 	}else {
-		perceived = false;
+		actual = false;
 	}
 }
 
