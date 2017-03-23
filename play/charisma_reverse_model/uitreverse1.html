@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+	<title>Reverse Model</title>
+	<link href="manual.css" rel="stylesheet" type="text/css">
+	<link href="doubleslider.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!-- Add a container later -->
+	<canvas id="canvas" width="550" height="550"></canvas>
+	<br>
+	Circle has <span id="charisma_text"></span> charisma right now!
+	<br>
+	<div id="slider"></div>
+	<br>
+	<div id="reset"></div>
+	<br>
+	<br>
+
+</body>
+</html>
+
+<script src="../lib/Mouse.js"></script>
+<script src="uitreverse.js"></script>
+<script>window.IS_IN_SIGHT = true;</script>
+
+
+<ul>
+  <li><a href="#" class="round green" onclick = "reverseButton()">Speak<span class="round">Time to man up and speak!</span></a></li>
+  <li><a href="#" class="round red" onclick="reset()">Reset<span class="round">Need a restart? </span></a></li>
+</ul> 
+
+<script src="doubleslider.js"></script>
+<script>
+var charisma_text = document.getElementById("charisma_text");
+
+var whatever = new DoubleSlider(document.getElementById("slider"),{
+	backgrounds:[
+		{color:"#00FF00"},
+		{color:"#aaa"},
+		{color:"#2095dc"}
+	],
+	values:[0.50,1.01],
+	onChange:function(values){
+		
+		window.CHARISMA = values[0]/100;
+		charisma_text.innerHTML = Math.round(window.CHARISMA*10000)+"%";
+
+	}
+});
+
+window.IS_IN_SIGHT = true;
+
+</script>
