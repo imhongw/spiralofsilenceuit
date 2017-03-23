@@ -256,7 +256,7 @@ var draggables;
 function reset(){
 	draggables = [];
 	//wanted to break up small group and big group
-	for(var x=8;x<9;x++){
+	for(var x=5;x<6;x++){
 		for(var y=2;y<3;y++){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				draggable.color = "circle";
