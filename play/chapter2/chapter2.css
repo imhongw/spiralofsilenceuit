@@ -1,9 +1,10 @@
-body{
-	margin:0;
+html, body{
+	margin:2px;
 	overflow: hidden;
-	width:550px;
-	background: #222;
+	width:100%;
+	height:100%;
 }
+
 
 * {
     margin: 0;

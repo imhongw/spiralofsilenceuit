@@ -38,7 +38,7 @@ var IS_PICKING_UP = false;
 var lastMouseX, lastMouseY;
 
 function Draggable(x,y){
-	
+
 	var self = this;
 	self.x = x;
 	self.y = y;
@@ -107,7 +107,8 @@ function Draggable(x,y){
 
 	var lastPressed = false;
 	self.update = function(){
-
+		ctx.fillStyle = "#212F3C";	
+		ctx.fillRect(0,0,canvas.width,canvas.height);
 		// Shakiness?
 		self.shaking = false;
 		self.bored = false;
@@ -169,6 +170,7 @@ function Draggable(x,y){
 
 	self.frame = 0;
 	self.blinking=0;
+
 	self.draw = function(){
 		ctx.save();
 		ctx.translate(self.x,self.y);
@@ -223,10 +225,8 @@ function Draggable(x,y){
 				}else {
 					if(self.changeable && self.x == pickupX && self.y == pickupY) {
 						img = images.whiteCircle;
-						// self.color = "circle";
 					}else {
 						img = images.whiteCircle;
-						//self.color = "circle";
 					}
 				}
 			}
@@ -240,9 +240,9 @@ function Draggable(x,y){
 			self.dangle += self.dangleVel;
 			self.dangle *= 0.9;
 		}
-
 		ctx.drawImage(img,-PEEP_SIZE/2,-PEEP_SIZE/2,PEEP_SIZE,PEEP_SIZE);
 		ctx.restore();
+
 	};
 
 }
