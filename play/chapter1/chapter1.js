@@ -18,14 +18,7 @@ function addAsset(name,src){
 	images[name].onload = onImageLoaded;
 	images[name].src = src;
 }
-addAsset("yayTriangle","../img/yay_triangle.png");
-addAsset("yayTriangleBlink","../img/yay_triangle_blink.png");
-addAsset("mehTriangle","../img/meh_triangle.png");
-addAsset("sadTriangle","../img/sad_triangle.png");
-addAsset("yaySquare","../img/yay_square.png");
-addAsset("yaySquareBlink","../img/yay_square_blink.png");
-addAsset("mehSquare","../img/meh_square.png");
-addAsset("sadSquare","../img/sad_square.png");
+
 addAsset("whiteCircle","../img/circle_white.png");
 addAsset("whiteTriangle","../img/triangle_white.png");
 addAsset("yellowTriangle","../img/triangle_yellow.png");
@@ -207,16 +200,15 @@ function Draggable(x,y){
 			}else if(self.bored){
 				img = images.whiteCircle;
 			}else{
-				if(self.blinking>0){
-					self.blinking--;
-					if(self.dragged && !self.shaking) {				
-						img = images.whiteCircle;
-					}else {
+				if(self.dragged && !self.shaking && !lastPressed) {				
+					img = images.whiteCircle;
+				}else {
+					if(pressedTime && !lastPressed && !self.dragged)
 						img = images.sadCircle;
-					}
-				}else{
-					img = images.sadCircle;
-				}			
+					else
+						img = images.whiteCircle;
+				}
+						
 			}
 		} else if(self.color == "noOptriangle") {
 			if(self.shaking){
@@ -227,7 +219,7 @@ function Draggable(x,y){
 				if(self.bored && lastPressed){
 					img = images.yellowTriangle;
 				}else{
-					img = images.yellowTriangle;
+					img = images.whiteTriangle;
 				}
 			}
 		} else { 
@@ -241,15 +233,14 @@ function Draggable(x,y){
 					img = images.sadCircle;
 				}else {
 					if(pressedTime && !lastPressed && !self.dragged)
-						img = images.whiteTriangle;
+						if(Math.random()<0.01)
+							self.color = "noOptriangle";
 					else
 						img = images.sadCircle;
 				}
 			}
 
 		}
-
-		//self.counting();
 
 		// Dangle
 		if(self.dragged){

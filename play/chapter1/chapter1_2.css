@@ -86,7 +86,7 @@ input.cmn-toggle-yes-no1 + label {
   width: 95px;
   height: 40px;
   position: relative;
-  left:430px;
+  left:450px;
   top: -20px;
 }
 input.cmn-toggle-yes-no1 + label:before,
@@ -160,6 +160,7 @@ body{
     width: 100px;
     height: 100px;
     left:230px;
+    top: -45px;
 
   }
 

@@ -2,37 +2,34 @@
 <html>
 <head>
 	<link href="chapter1.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 	<style>
 	body{
 		background: url(../img/introdragging.png);
 		background-repeat: no-repeat;
 	}
+
+    #reset {
+    	position:relative;
+    	top:0;
+    	left:0;
+    }
+
 	</style>
 </head>
 <body>
-	<canvas id="canvas"></canvas>
-	
-	<ul>
-  	<li><a href="#" class="round red" onclick="reset()"> Reset <span class="round"> Need a restart? </span></a></li>
-	</ul> 
-
-
-	<!--present future-->
-	<!--
-	<div class="switch">
-  	<input id="cmn-toggle-71" class="cmn-toggle cmn-toggle-yes-no" type="checkbox" onclick="aftersometime()">
-  	<label for="cmn-toggle-71" data-on="Future" data-off="Present"></label>
+	<div class="w3-container">
+	<canvas id="canvas" width=850 height=450></canvas>
+	<br>
+	<br>
+	<br>
+	<p><div id="reset"></div></p>
 	</div>
-	-->
-	<!-- perceived toggle -->
-	<!--
-	<div class="switch">
-  	<input id="cmn-toggle-7" class="cmn-toggle1 cmn-toggle-yes-no1" type="checkbox" onclick="actualfunc()">
-  	<label for="cmn-toggle-7" data-on="Actual" data-off="Perceived"></label>
-	</div> -->
 	
+</body>
+</html>
 
-	<script>
+<script>
 	var TILE_SIZE = 60;
 	var PEEP_SIZE = 50;
 
@@ -51,6 +48,8 @@
 	<script>
 		window.IS_IN_SIGHT = true;
 	</script>
-</body>
-</html>
 
+
+	<ul>
+  	<li><a href="#" class="round red" onclick="reset()"> Reset <span class="round"> Need a restart? </span></a></li>
+	</ul> 
