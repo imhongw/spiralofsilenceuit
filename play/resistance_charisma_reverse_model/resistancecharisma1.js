@@ -30,6 +30,8 @@ addAsset("sadCircle","../img/unhappy_circle_white.png");
 var IS_PICKING_UP = false;
 var lastMouseX, lastMouseY;
 var CHARISMA = 0.005;
+var RESISTANCE = 0.005;
+var FILL = 0.5;
 
 function Draggable(x,y){
 	
@@ -100,6 +102,7 @@ function Draggable(x,y){
 	}
 
 	var lastPressed = false;
+
 	self.update = function(){
 		ctx.fillStyle = "#212F3C";	
 		ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -121,7 +124,7 @@ function Draggable(x,y){
 					neighbors++;
 					if(d.color==self.color){
 						same++;
-					}else {
+					}else if(d.color!=self.color){
 						notSame++;
 					}
 				}
@@ -164,7 +167,6 @@ function Draggable(x,y){
 
 	self.frame = 0;
 	self.blinking=0;
-	console.log(CHARISMA);
 	self.draw = function(){
 		ctx.save();
 		ctx.translate(self.x,self.y);
@@ -179,9 +181,13 @@ function Draggable(x,y){
 		if(Math.random()<0.01){
 			self.blinking=10;
 		}
-
+	
 		// Draw thing
 		var img;
+
+		var notSameLah=0;
+		var same=0;
+		var neighbors=0;
 		//circles are the good guys
 		if(self.color=="circle"){ 
 			if(self.shaking){
@@ -200,13 +206,35 @@ function Draggable(x,y){
 			self.dragged = false;
 			if(self.changeable && reverse) {
 				if(Math.random()<CHARISMA){
-					self.color = "circle";
-				}
+					self.color = "changedcircle";
+				}else if(Math.random()<(CHARISMA/10)){
+					self.color ="circle";
+				}	
 			}else {
 				self.color = "spreader";
 			}
-		}else if(self.color == "box") {
+		}else if(self.color == "changedcircle") {
 			img = images.whiteCircle;
+			self.dragged = false;
+			if(self.changeable && reverse) {
+				if(Math.random()<RESISTANCE){
+					self.color = "spreader";
+				}
+			}else {
+				self.color = "changedcircle";
+			}
+		}else if(self.color == "alphatriangle") {
+			if(self.shaking){
+				img = images.yellowTriangle;
+			}else if(self.bored){
+				img = images.yellowTriangle;
+			}else{
+					if(self.dragged && !self.shaking) {			
+						img = images.yellowTriangle;
+					}else {
+						img = images.yellowTriangle;
+					}			
+			}
 		} else {
 			if(self.shaking) {
 				img = images.whiteTriangle;
@@ -219,15 +247,13 @@ function Draggable(x,y){
 				}else {
 					if(self.changeable && self.x == pickupX && self.y == pickupY) {
 						img = images.whiteCircle;
-						// self.color = "circle";
 					}else {
 						img = images.whiteCircle;
-						//self.color = "circle";
 					}
 				}
 			}
 		}
-		
+
 		// Dangle
 		if(self.dragged){
 			self.dangle += (lastMouseX-Mouse.x)/100;
@@ -239,12 +265,16 @@ function Draggable(x,y){
 
 		ctx.drawImage(img,-PEEP_SIZE/2,-PEEP_SIZE/2,PEEP_SIZE,PEEP_SIZE);
 		ctx.restore();
+
 	};
 
 }
 var reverse = false;
 function reverseButton() {
-	reverse = true;
+	if(reverse==false) 
+		reverse = true;
+	else
+		reverse =false;
 }
 
 var draggables;
@@ -256,9 +286,13 @@ function reset(){
 
 	for(var x=0;x<8;x++){
 		for(var y=0;y<9;y++){
-			if(Math.random()<0.70){
+			if(Math.random()<FILL){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
+				if(Math.random()<0.03){
+					draggable.color = "circle";				
+				}else {
+					draggable.color = "spreader";
+				}
 				draggables.push(draggable);
 			}
 		}
@@ -268,9 +302,15 @@ function reset(){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				draggable.color = "circle";
 				draggables.push(draggable);
-			
 		}
 	}
+	// for(var x=0;x<1;x++) {
+	// 	for(var y=8;y<9;y++) {
+	// 		var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
+	// 			draggable.color = "alphatriangle";
+	// 			draggables.push(draggable);
+	// 	}
+	// }
 	reverse = false;
 }
 reset();

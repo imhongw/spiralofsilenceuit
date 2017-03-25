@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+	<title>Reverse Model</title>
+	<link href="resistancecharisma.css" rel="stylesheet" type="text/css">
+	<link href="doubleslider.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="container">
+	<canvas id="canvas" width="500" height="500"></canvas>	
+	<br>
+	<div id="slidercontainer">
+		<p align="justify"><font size='5'>What happens when there's resistance? Play around with the new resistant slider.</font></p>
+		<br>
+		<font size='5'>Fill up <font size='5' color="red"><span id="fill_text"></span> </font>! Then hit reset.</font>
+		<br>
+		<div id="slider2"></div>
+		<br>
+		<font size='5'>Circle has <font size='5' color="red"><span id="charisma_text"></span> </font> charisma now!</font>
+		<br>
+		<div id="slider"></div>
+		<br>
+		<font size='5'>Triangle has <font size='5' color="red"><span id="resistance_text"></span> </font> resistance now!</font>
+		<br>
+		<div id="slider1"></div>
+		<br>
+		<br>
+		<p align="justify"><font size='5'>*Note how when the charisma is higher than resistance, the entire box will be majority circles and vice versa.</font></p>
+	</div>
+<div id="reset"></div>
+</div>
+</body>
+</html>
+
+<script src="../lib/Mouse.js"></script>
+<script src="resistancecharisma1.js"></script>
+<script>window.IS_IN_SIGHT = true;</script>
+
+
+<ul>
+  <li><a href="#" class="round green" onclick = "reverseButton()">Speak<span class="round">Time to man up and speak!</span></a></li>
+  <li><a href="#" class="round red" onclick="reset()">Reset<span class="round">Need a restart? </span></a></li>
+</ul> 
+
+<script src="doubleslider.js"></script>
+<script>
+var charisma_text = document.getElementById("charisma_text");
+
+var whatever = new DoubleSlider(document.getElementById("slider"),{
+	backgrounds:[
+		{color:"#00FF00"},
+		{color:"#aaa"},
+		{color:"#2095dc"}
+	],
+	values:[0.50,1.02],
+	onChange:function(values){
+		window.CHARISMA = values[0]/100;
+		charisma_text.innerHTML = Math.round(window.CHARISMA*10000)+"%";
+
+	}
+});
+
+window.IS_IN_SIGHT = true;
+
+</script>
+
+<script>
+var resistance_text = document.getElementById("resistance_text");
+
+var whatever = new DoubleSlider(document.getElementById("slider1"),{
+	backgrounds:[
+		{color:"#00FF00"},
+		{color:"#aaa"},
+		{color:"#2095dc"}
+	],
+	values:[0.50,1.02],
+	onChange:function(values){
+		window.RESISTANCE= values[0]/100;
+		resistance_text.innerHTML = Math.round(window.RESISTANCE*10000)+"%";
+
+	}
+});
+
+window.IS_IN_SIGHT = true;
+
+</script>
+
+<script>
+var fill_text = document.getElementById("fill_text");
+
+var whatever = new DoubleSlider(document.getElementById("slider2"),{
+	backgrounds:[
+		{color:"#00FF00"},
+		{color:"#aaa"},
+		{color:"#2095dc"}
+	],
+	values:[0.50,1.02],
+	onChange:function(values){
+		window.FILL = values[0];
+		fill_text.innerHTML = Math.round(window.FILL*100)+"%";
+
+	}
+});
+
+window.IS_IN_SIGHT = true;
+
+</script>
