@@ -2,7 +2,7 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
 var TILE_SIZE = 55;
-var PEEP_SIZE = 50;
+var PEEP_SIZE = 48;
 
 var GRID_SIZE = 10;
 
@@ -20,14 +20,7 @@ function addAsset(name,src){
 	images[name].onload = onImageLoaded;
 	images[name].src = src;
 }
-addAsset("yayTriangle","../img/yay_triangle.png");
-addAsset("yayTriangleBlink","../img/yay_triangle_blink.png");
-addAsset("mehTriangle","../img/meh_triangle.png");
-addAsset("sadTriangle","../img/sad_triangle.png");
-addAsset("yaySquare","../img/yay_square.png");
-addAsset("yaySquareBlink","../img/yay_square_blink.png");
-addAsset("mehSquare","../img/meh_square.png");
-addAsset("sadSquare","../img/sad_square.png");
+
 addAsset("whiteCircle","../img/circle_white.png");
 addAsset("whiteTriangle","../img/triangle_white.png");
 addAsset("yellowTriangle","../img/triangle_yellow.png");
@@ -108,7 +101,8 @@ function Draggable(x,y){
 
 	var lastPressed = false;
 	self.update = function(){
-
+		ctx.fillStyle = "#212F3C";	
+		ctx.fillRect(0,0,canvas.width,canvas.height);
 		// Shakiness?
 		self.shaking = false;
 		self.bored = false;
@@ -258,77 +252,24 @@ var draggables;
 //reset function allows you to set random tiles on the board.
 function reset(){
 	draggables = [];
+	var counter = 1;
 	//wanted to break up small group and big group
-	for(var x=8;x<9;x++){
-		for(var y=2;y<3;y++){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "circle";
-				draggables.push(draggable);
-			
-		}
-	}
-	for(var x=0;x<1;x++){
-		for(var y=0;y<5;y++){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
-				draggables.push(draggable);	
-		}
-	}
-	for(var x=1;x<3;x++){
-		for(var y=0;y<1;y++){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
-				draggables.push(draggable);
-			
-		}
-	}
-	for(var x=2;x<3;x++){
-		for(var y=1;y<3;y++){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
-				draggables.push(draggable);
-			
-		}
-	}
-	for(var x=4;x<5;x++){
-		for(var y=2;y<3;y++){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
-				draggables.push(draggable);
-			
-		}
-	}
-	for(var x=5;x<6;x++){
-		for(var y=1;y<2;y++){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
-				draggables.push(draggable);
-			
-		}
-	}
-	for(var x=5;x<6;x++){
-		for(var y=3;y<4;y++){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
-				draggables.push(draggable);
-			
-		}
-	}
-	for(var x=5;x<7;x++){
-		for(var y=2;y<3;y++){
-				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = "spreader";
-				draggables.push(draggable);
-			
-		}
-	}
-	for(var x=0;x<10;x++){
-		for(var y=5;y<9;y++){
-			if(Math.random()<0.90){
+
+	for(var x=0;x<8;x++){
+		for(var y=0;y<9;y++){
+			if(Math.random()<0.70){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				draggable.color = "spreader";
 				draggables.push(draggable);
 			}
+		}
+	}
+	for(var x=8;x<9;x++){
+		for(var y=4;y<5;y++){
+				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
+				draggable.color = "circle";
+				draggables.push(draggable);
+			
 		}
 	}
 	reverse = false;

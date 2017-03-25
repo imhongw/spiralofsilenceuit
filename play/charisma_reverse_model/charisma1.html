@@ -2,26 +2,31 @@
 <html>
 <head>
 	<title>Reverse Model</title>
-	<link href="manual.css" rel="stylesheet" type="text/css">
+	<link href="charisma.css" rel="stylesheet" type="text/css">
 	<link href="doubleslider.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<!-- Add a container later -->
-	<canvas id="canvas" width="550" height="550"></canvas>
+<div id="container">
+	<canvas id="canvas" width="500" height="500"></canvas>	
 	<br>
-	Circle has <span id="charisma_text"></span> charisma right now!
-	<br>
-	<div id="slider"></div>
-	<br>
-	<div id="reset"></div>
-	<br>
-	<br>
-
+	<div id="slidercontainer">
+		<p align="justify"><font size='5'>In reality, a person's charisma matters in determining whether or not another person listens to you. We've included a charisma slider for you play!</font></p>
+		<br>
+		<br>
+		<font size='5'>Circle has <font size='5' color="red"><span id="charisma_text"></span> </font> charisma now!</font>
+		<br>
+		<div id="slider"></div>
+		<br>
+		<br>
+		<p align="justify"><font size='5'>Notice how the speed of influencing the other shape changes? People with more charisma are more persuasive in general and can change others' thoughts more quickly.</font></p>
+	</div>
+<div id="reset"></div>
+</div>
 </body>
 </html>
 
 <script src="../lib/Mouse.js"></script>
-<script src="uitreverse.js"></script>
+<script src="charisma1.js"></script>
 <script>window.IS_IN_SIGHT = true;</script>
 
 
@@ -40,9 +45,8 @@ var whatever = new DoubleSlider(document.getElementById("slider"),{
 		{color:"#aaa"},
 		{color:"#2095dc"}
 	],
-	values:[0.50,1.01],
+	values:[0.50,1.02],
 	onChange:function(values){
-		
 		window.CHARISMA = values[0]/100;
 		charisma_text.innerHTML = Math.round(window.CHARISMA*10000)+"%";
 
