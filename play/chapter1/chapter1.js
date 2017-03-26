@@ -196,7 +196,7 @@ function Draggable(x,y){
 			}
 		}else if(self.color=="circle"){
 			if(self.shaking){
-				img = images.whiteCircle;
+				img = images.sadCircle;
 			}else if(self.bored){
 				img = images.whiteCircle;
 			}else{
@@ -214,17 +214,20 @@ function Draggable(x,y){
 			if(self.shaking){
 				img = images.yellowTriangle;
 			}else if(self.bored){
-					img = images.whiteTriangle;
+					img = images.yellowTriangle;
 			}else{
 				if(self.bored && lastPressed){
 					img = images.yellowTriangle;
 				}else{
+					if(!pressedTime && !lastPressed && !self.dragged){
+						self.color = "sadCircle";
+					}
 					img = images.whiteTriangle;
 				}
 			}
 		} else { 
 			if(self.shaking) {
-				img = images.whiteCircle;
+				img = images.sadCircle;
 			}else if(self.bored) {
 				img = images.whiteCircle;
 			}else {
@@ -308,12 +311,6 @@ var GRID_SIZE_HEIGHT = GRID.length;
 canvas.width = GRID_SIZE_WIDTH*TILE_SIZE+10;
 canvas.height = GRID_SIZE_HEIGHT*TILE_SIZE+10;
 
-var SQUARE_NORMAL = 1;
-var TRIANGLE_NORMAL = 2;
-var SQUARE_SAD = 3;
-var TRIANGLE_NO_OP = 4; 
-
-
 var pressedTime = false;
 window.aftersometime = function() {
 	if(pressedTime == false) {
@@ -331,6 +328,12 @@ window.actualfunc = function() {
 		actual = false;
 	}
 }
+
+var SQUARE_NORMAL = 1;
+var TRIANGLE_NORMAL = 2;
+var SQUARE_SAD = 3;
+var TRIANGLE_NO_OP = 4; 
+
 
 window.reset = function(){
 
