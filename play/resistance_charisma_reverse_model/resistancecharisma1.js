@@ -207,7 +207,7 @@ function Draggable(x,y){
 			if(self.changeable && reverse) {
 				if(Math.random()<CHARISMA){
 					self.color = "changedcircle";
-				}else if(Math.random()<(CHARISMA/10)){
+				}else if(Math.random()<(CHARISMA/100)){
 					self.color ="circle";
 				}	
 			}else {
