@@ -225,11 +225,23 @@ function Draggable(x,y){
 					img = images.whiteTriangle;
 				}
 			}
-		} else { 
+		}else if(self.color == "noOptriangle1") {
+			if(self.shaking){
+				img = images.yellowTriangle;
+			}else if(self.bored){
+					img = images.yellowTriangle;
+			}else{
+				if(!actual){
+					img = images.whiteCircle;
+				}else{
+					img = images.whiteTriangle;
+				}
+			}
+		}else { 
 			if(self.shaking) {
 				img = images.sadCircle;
 			}else if(self.bored) {
-				img = images.whiteCircle;
+				img = images.whiteTriangle;
 			}else {
 				img = images.whiteCircle;
 				if(self.dragged && !self.shaking && !lastPressed) {
@@ -238,8 +250,9 @@ function Draggable(x,y){
 					if(pressedTime && !lastPressed && !self.dragged)
 						if(Math.random()<0.01)
 							self.color = "noOptriangle";
-					else
+					else{
 						img = images.sadCircle;
+					}
 				}
 			}
 
@@ -364,7 +377,7 @@ window.reset = function(){
 					draggable.color = "sadCircle";
 					break;
 				case TRIANGLE_NO_OP:
-					draggable.color = "noOptriangle";
+					draggable.color = "noOptriangle1";
 			}
 
 			//draggable.color = (data==2) ? "triangle" : (data == 1 ? "square" : ....); 
