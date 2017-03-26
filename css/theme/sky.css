@@ -17,23 +17,15 @@ width: 100%;
 }
 
 body {
-  margin: 0px;
-  min-height: 100%;
-  width:100%;
-  background: #add9e4;
-  background: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #f7fbfc), color-stop(100%, #add9e4));
-  background: -webkit-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-  background: -o-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-  background: -ms-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-  background: radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-  background-color: #f7fbfc; }
+  background: #ABC3E8;
+  background-color: #ABC3E8; }
 
 .reveal {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Josefin Sans", sans-serif;
+    font-style: normal; 
   font-size: 40px;
   font-weight: normal;
-  color: #333; }
+  color: #4D5868; }
 
 ::selection {
   color: #fff;
@@ -51,6 +43,34 @@ body {
   font-weight: inherit; }
 
 /*********************************************
+ * Text Styles (edited zh)
+ *********************************************/
+
+#subtext {
+    font-size: 35px;
+    font-family: "Libre Baskerville"; 
+    font-style: italic;
+    color: black
+}
+
+#emphasis {
+    color: #1C2A40;
+    font-size: 25px;
+}
+
+#instructions {
+    color: #1C2A40;
+    font-size: 20px;
+}
+#slide_text {
+    font-size: 25px;
+    line-height: 1.5;
+    position: relative;
+    text-align: center;
+    font-style: normal
+}
+
+/*********************************************
  * HEADERS
  *********************************************/
 .reveal h1,
@@ -60,9 +80,9 @@ body {
 .reveal h5,
 .reveal h6 {
   margin: 0 0 20px 0;
-  color: #333;
-  font-family: "Quicksand", sans-serif;
-  font-weight: normal;
+  color: #4D5868;
+  font-family: "Cardo", sans-serif;
+font-style: Bold;
   line-height: 1.2;
   letter-spacing: -0.08em;
   text-transform: uppercase;
