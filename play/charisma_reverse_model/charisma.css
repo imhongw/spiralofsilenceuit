@@ -30,6 +30,39 @@ div{
 	float:right;
 }
 
+/*********************************************
+ * Text Styles (edited zh)
+ *********************************************/
+
+#subtext {
+    font-size: 35px;
+    font-family: "Libre Baskerville"; 
+    font-style: italic;
+    color: black
+}
+
+#emphasis {
+    color: #1C2A40;
+    font-size: 25px;
+}
+
+#instructions {
+    color: #1C2A40;
+    font-size: 20px;
+    font-family: "Josefin Sans";
+}
+#slide_text {
+    font-size: 25px;
+    line-height: 1.5;
+    position: relative;
+    text-align: center;
+    font-style: normal;
+    font-family: "Josefin Sans"; 
+    text-align: justify;
+    color: #4D5868
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -190,3 +223,4 @@ div{
 		background: rgba(161,145,0,.7);	
 
 	}
+

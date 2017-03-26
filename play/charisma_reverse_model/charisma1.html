@@ -10,15 +10,25 @@
 	<canvas id="canvas" width="500" height="500"></canvas>	
 	<br>
 	<div id="slidercontainer">
-		<p align="justify"><font size='5'>In reality, a person's charisma matters in determining whether or not another person listens to you. You can now play with the charisma slider we have just included!</font></p>
-		<br>
-		<br>
-		<font size='5'>Circle has <font size='5' color="red"><span id="charisma_text"></span> </font> charisma now!</font>
+        
+            <p id ="slide_text">
+                In reality, a person's charisma matters in determining whether or not another person listens to you. 
+                <br>
+                <br>
+                <b id = "instructions">
+                    Move the slider to adjust level of charisma!
+                </b>
+            </p>
+		<div id ="slide_text">
+            Circle has <b id = "emphasis"><span id="charisma_text"></span></b> </font> charisma now!
+        </div>
 		<br>
 		<div id="slider"></div>
 		<br>
 		<br>
-		<p align="justify"><font size='5'>Notice how the speed of influencing the other shape changes? People with more charisma are more persuasive in general and can change others' thoughts more quickly.</font></p>
+		<p id ="slide_text">
+            Notice how the speed of influencing the other shape changes? People with <b id ="emphasis">more charisma are more persuasive in general</b> and can influence others more quickly.
+        </p>
 	</div>
 <div id="reset"></div>
 </div>
@@ -41,8 +51,8 @@ var charisma_text = document.getElementById("charisma_text");
 
 var whatever = new DoubleSlider(document.getElementById("slider"),{
 	backgrounds:[
-		{color:"#00FF00"},
-		{color:"#aaa"},
+		{color:"#679BEC"},
+		{color:"#8598B5"},
 		{color:"#2095dc"}
 	],
 	values:[0.50,1.02],
