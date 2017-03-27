@@ -34,6 +34,9 @@ div{
  * Text Styles (edited zh)
  *********************************************/
 
+@import url(https://fonts.googleapis.com/css?family=Cardo:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400italic,700italic,400,700);
+
 #subtext {
     font-size: 35px;
     font-family: "Libre Baskerville"; 
