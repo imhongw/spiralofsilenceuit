@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+	<title>Reverse Model</title>
+	<link href="resistancecharisma.css" rel="stylesheet" type="text/css">
+	<link href="doubleslider.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="container">
+	<canvas id="canvas" width="500" height="500"></canvas>	
+	<br>
+	<div id="slidercontainer">
+		<p id = "slide_text">
+            What if people are not too receptive to persuasion? Some people may be more resistant to persuasion! 
+            <br>
+            <br>
+            <b id = "instructions">
+                Move the slider to adjust level of receptivenes
+            </b>
+        </p>
+		<br>
+        <div id = "slide_text">
+            <!--
+            <font size='5'>Fill up <b id="emphasis"><span id="fill_text"></span> </b>! Then hit reset.</font>
+            <br>
+            <div id="slider2"></div>
+            -->
+            <font size='5'>Circle has <b id="emphasis"><span id="charisma_text"></span> </b> charisma now!</font>
+            <br>
+            <div id="slider"></div>
+            <font size='5'>Triangle has <b id="emphasis"><span id="resistance_text"></span> </b> resistance now!</font>
+            <br>
+            <div id="slider1"></div>
+            <br>
+        </div>
+		<br>
+		<p id = "slide_text">*Note how when the charisma is higher than resistance, the entire box will be majority circles and vice versa.</p>
+	</div>
+<div id="reset"></div>
+</div>
+</body>
+</html>
+
+<script src="../lib/Mouse.js"></script>
+<script src="resistancecharisma1.js"></script>
+<script>window.IS_IN_SIGHT = true;</script>
+
+
+<ul>
+  <li><a href="#" class="round green" onclick = "reverseButton()">Speak<span class="round">Time to man up and speak!</span></a></li>
+  <li><a href="#" class="round red" onclick="reset()">Reset<span class="round">Need a restart? </span></a></li>
+</ul> 
+
+<script src="doubleslider.js"></script>
+<script>
+var charisma_text = document.getElementById("charisma_text");
+
+var whatever = new DoubleSlider(document.getElementById("slider"),{
+	backgrounds:[
+		{color:"#679BEC"},
+		{color:"#8598B5"},
+		{color:"#2095dc"}
+	],
+	values:[0.50,1.02],
+	onChange:function(values){
+		window.CHARISMA = values[0]/100;
+		charisma_text.innerHTML = Math.round(window.CHARISMA*10000)+"%";
+
+	}
+});
+
+window.IS_IN_SIGHT = true;
+
+</script>
+
+<script>
+var resistance_text = document.getElementById("resistance_text");
+
+var whatever = new DoubleSlider(document.getElementById("slider1"),{
+	backgrounds:[
+		{color:"#679BEC"},
+		{color:"#8598B5"},
+		{color:"#2095dc"}
+	],
+	values:[0.50,1.02],
+	onChange:function(values){
+		window.RESISTANCE= values[0]/100;
+		resistance_text.innerHTML = Math.round(window.RESISTANCE*10000)+"%";
+
+	}
+});
+
+window.IS_IN_SIGHT = true;
+
+</script>
+
+<script>
+var fill_text = document.getElementById("fill_text");
+
+var whatever = new DoubleSlider(document.getElementById("slider2"),{
+	backgrounds:[
+		{color:"#4D5868"},
+		{color:"#aaa"},
+		{color:"#2095dc"}
+	],
+	values:[0.50,1.02],
+	onChange:function(values){
+		window.FILL = values[0];
+		fill_text.innerHTML = Math.round(window.FILL*100)+"%";
+
+	}
+});
+
+window.IS_IN_SIGHT = true;
+
+</script>

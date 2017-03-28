@@ -4,10 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <title>reveal.js</title>
+        <title>Big Ideas</title>
 
         <link rel="stylesheet" href="css/reveal.css">
         <link rel="stylesheet" href="css/theme/sky.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 
         <!-- Theme used for syntax highlighting of code -->
         <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -20,6 +21,14 @@
             link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
             document.getElementsByTagName( 'head' )[0].appendChild( link );
         </script>
+        <style>
+            div {
+                position: center;
+                width:100%;
+                height:100%;
+            }
+
+        </style>
     </head>
     <body>
         <div class="reveal">
@@ -29,8 +38,8 @@
             data-background="https://media.giphy.com/media/l2JHRhAtnJSDNJ2py/giphy.gif" class="present"  style="top: 269.5px; display: block;">         
 
                 <h1><font color="red">B</font><font color="orange">I</font><font color="goldenrod">G</font> &nbsp;<font color="green">I</font><font color="blue">D</font><font color="purple">E</font><font color="indigo">A</font><font color="black">S</font></h1>
-                <h3>UIT2207.</h3>
-                <p><span class="fragment">Avocading big ideas, one model at a time.</span>
+                <h3><font color="black">Spiral of Silence</font></h3>
+                <p><font color ="black">Avocading big ideas, one model at a time.</font></p>
             </section>
 
 
@@ -42,106 +51,161 @@
             </section>
                 
                         
-            <!-- Slide 3 on stort -->
+            <!-- Slide 3 on story -->
             <section id="fragments">
-                        <h2>Origin</h2>
-                        <p>This is a story about how remaining silent can cause the world to become a meaner place.</p>
-                        
-                        <p><span class="fragment">To start, let's try understanding the concept behind this story called</span> <span class="fragment"><b>The Spiral of Silence</b>.</span> 
+                <h2>Origin</h2>
+                <p id="slide_text">This is a story about how remaining silent can cause the world to become a meaner place. To start, let's try understanding the concept behind this story called <b id='emphasis'>The Spiral of Silence.</b></p> 
             </section>
             
             <section>
-            <p>The inhabitants in this world that we will be exploring have two different opinions, A and B. Circles represent opinion A and the triangles represent opinion B.</p>
-            </section>
-
-            <section>
-                <section data-background ="">
-                    <font size="4" style="position:fixed; top:-10px; left:345px"><h1>Fitting In</h1></font>
-                    <br>
-                    <p align="justify"><font size="3" style="position:fixed; top:80px; left:80px">Notice that there are many triangles, which means that opinion A is the majority opinion. Since the circles have different opinions from the majority, they are being excluded from the main group of shapes. In other words, the circles are being <b>isolated</b>.</font></p>
-                </section>
-            </section>
+                <h2>Legend</h2>
+                <p id='slide_text'>The two inhabitants of this world have <b id ="emphasis"> different opinions.</b></p> 
                 
+                <img src="img/opinion_a_b.png">
+                
+            </section>
 
-            <!-- Slide 4 UITMODEL2 -->   
             <section>
                 <section data-background ="">
                     <font size="4" style="position:fixed; top:-10px; left:345px"><h1>Fitting In</h1></font>
-                   <br>
-                    <p align="justify"><font size="3" style="position:fixed; top:80px; left:80px">We all love big groups, don’t we? However, to be included in that group, we will have to change our opinions to match the majority’s. <b>Try moving the lonely circles to the other side!</b></font></p>
-                    <iframe src="play/mini2/uitmodel2.html" style="position:fixed;  top:150px; left:150px; width:2000px; height:2000px; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
-                    
-                    <!--
-                    Press down for a hint!
                     <br>
-                    <a href="#" class="navigate-down">
-                    <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow" style="border-style: none"/>
-                    </a>
-                    </section> -->
-                    <!--<section>Try dragging the circle around. Does anything happen to it? </section>-->
+                    <p id='slide_text'>Notice that there are many triangles, which means that opinion A is the majority opinion. Since the circles have different opinions from the majority, they are being excluded from the main group of shapes. In other words, the circles are being <b id='emphasis'>isolated.</b></font></p>
+                </section>
+            </section>   
+
+            <!-- Slide 4 UITMODEL1 --> 
+            <section>
+                <section data-background ="">
+                    <div>
+                    <!--<p style="font-size:30px">Fitting In</p>-->
+                    <p id ='slide_text'>We are social creatures, aren't we? This is why we <b id = 'emphasis'>want</b> to integrate with the majority <br><b id='instructions'>Try moving the lonely circles to the other side!</b></br></p>
+                    </div>
+                    <div>
+                    <iframe src="play/chapter1/uitmodel1.html" style="position:relative; width:780px; height:580px; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
+                    </div>
                     </section>
             </section>  
             
             <section>
-                <p>But...wait! What if we don’t actually change our opinions to fit in? What if we <b>pretend</b> to do so instead, even though we do not agree with them?</p>
+                <p id='slide_text'>But...wait! Did you notice that the circles <b id='emphasis'>did not</b> become triangles?</p>
             </section>
 
-            <!-- Slide 5 uitmodel3 -->
-            <section data-background ="">
-                    <font size="4" style="position:fixed; top:-10px; left:280px"><h1>Time's Ticking</h1></font>
-                   <br>
-                <p align="justify"><font size="3" style="position:fixed; top:75px; left:80px">As time passes, we are exposed to the majority opinion and less of the minority opinion. As such, we start to actually <i>conform</i> to the majority opinion. 
-                <b>Toggle the "Present" button to see how opinions can change over time. </b></font></p>
-                <iframe src="play/mini2/uitmodel3.html" style="position:fixed; top:150px; left:150px; width:2000px; height:2000px; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
-            </section>
+            <!-- Slide 5 UITMODEL2 --> 
+            <section>
+                <section data-background ="">
+                    <div>
+                    <!--<p style="font-size:30px">Time's Ticking</p>-->
+                    <p id='slide_text'>Initially, we still hold on to our original opinion. However, as time passes, we are exposed to the majority opinion and less of our original opinion. We then start to actually <b id='emphasis'>conform</b> to the majority opinion. <br><b id="instructions">Toggle the "Present" button to see how opinions can change over time. </b></p>
+                    </div>
+                    <iframe src="play/chapter1/uitmodel2.html" style="position:relative; width:780px; height:580px; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
+                    </section>
+            </section>  
             
             <!-- Slide 6 some random texts -->
             <section>
-                So far, we’ve seen that the circles will always try to fit in with the triangles, because the triangles are the majority. But this is what is called a <i>perceived majority</i>. In other words, this opinion is only <b>thought</b> to be the majority.
+                <p id ="slide_text">So far, we’ve seen that the circles want to integrate with the triangles, as they are the <b id="emphasis"> perceived majority.</b>
+                <br>In other words, the triangles are <b id='emphasis'>thought</b> to be the majority. </p>
             </section>
+            <!--
+            <section>
+                <p id ="slide_text">The following model looks just like the one we have seen before - the triangles seem to be the majority opinion. This is the 
+                    <b id="emphasis"> perceived majority</b> 
+  
+                    <b id = "instructions">
+                        Try clicking on the "perceived" button to see what the <b id="emphasis">actual majority is</b>
+                    </b>.
+                <br>In other words, the triangles are <b id='emphasis'>thought</b> to be the majority. 
+                </p>
+            </section>
+            -->
 
-    
+            <!-- Slide 7 UITMODEL3-->
             <section>
-                    <font size="4" style="position:fixed; top:-10px; left:100px"><h1>Not What Meets The Eye</h1></font>
-                   <br>
-                <p align="justify"><font size="3" style="position:fixed; top:70px; left:80px">Sometimes, the perceived majority is not the actual majority. <b>Toggle the "Perceived" button and observe what happens.</b> The circles are the majority opinion. This is called the <b>actual majority</b>. However, the circles still perceive the triangles as the majority opinion and will try to fit in with them.
-                </font></p>
-                    <iframe src="play/mini2/uitmodel4.html" style="position:fixed;  top:150px; left:150px; width:2000px; height:2000px; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
-                    
-                    <!--
-                    Press down for a hint!
-                    <br>
-                    <a href="#" class="navigate-down">
-                    <img width="178" height="238" data-src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow" style="border-style: none"/>
-                    </a>
-                    </section> -->
-                    <!--<section>Try dragging the circle around. Does anything happen to it? </section>-->
-            </section>
-                
+                <section data-background ="">
+                    <div>
+                    <!--<p style="font-size:30px">Not What Meets The Eyes</p>-->
+                    <p id = "slide_text">
+                        The following model looks just like the one we have seen before - the triangles seem to be the majority opinion. This is the perceived majority opinion. 
+                        <br>
+                            <b id = "instructions">
+                                Try clicking on the “perceived” button to see what the actual majority is.
+                            </b>
+                    </p>
+                    </div>
+
+                    <iframe src="play/chapter1/uitmodel3.html" style="position:relative; width:780px; height:580px; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
+                    </section>
+            </section> 
+
+
+            <!-- Slide 7 UITMODEL4--> 
             <section>
-                    <font size="4"><h1>What is the Spiral of Silence?</h1></font> 
+                <section data-background ="">
+                    <div>
+                    <!--<p style="font-size:30px">Not What Meets The Eyes</p>-->
+                    <p id ="slide_text">Sometimes, the perceived majority is not the actual majority. The circles are the majority opinion. This is called the <b id = "emphasis">actual majority</b>. However, the circles still perceive the triangles as the majority opinion and will try to fit in with them.<br><b id="instructions">Toggle the "Perceived" button and observe what happens.</b></p>
+                    </div>
+
+                    <iframe src="play/chapter1/uitmodel4.html" style="position:relative; width:780px; height:580px; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
+                    </section>
+            </section> 
+
+            <!-- Slide 8 Spiral of Silence Quote -->
+                <section data-background="https://media.giphy.com/media/o29cMlo1wFwyI/giphy.gif" class="present"  style="top: 269.5px; display: block;">
+                    <h2><font color = "white">Spiral of Silence</font></h2>
                     <br>
                 
-                    <blockquote><small>"More frightened of isolation than of committing an error, they joined the masses even though they did not agree with them."</small></blockquote>
+                    <blockquote><small><font color = "white">"More frightened of isolation than of committing an error, they joined the masses even though they did not agree with them."</font></small></blockquote>
                     <br>
                     
                     <div align="right">
                     
-                    <font size="3"><b>Elisabeth Noelle-Neumann   (1916-2010)</b></font>
+                    <font size="3"; color = 'white'><b>Elisabeth Noelle-Neumann   (1916-2010)</b></font>
             </section>    
 
             <section>
                 <section data-background ="">
-                    <p align="justify"><font size="4" style="position:fixed; top:70px; left:480px">However, don’t underestimate the power of what an individual can do! Even if someone else has a different opinion, you can voice out your opinion to try to convince them. <b>Try moving the circle closer to the triangle and make it speak up!</b>
-                </font></p>
-                   <br>
-                    <iframe src="play/manual/uitreverse2.html" style="position:fixed; background:; top:0px; left:0px; width:800px; height:800px; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
+                    <p id = 'slide_text'; align="center"><font style="position:relative; float:right;">However, don’t underestimate the power of what an individual can do! Even if someone else has a different opinion, you can voice out your opinion to try to convince them. <br><b id ='instructions'>Try moving the circle closer to the triangle and make it speak up! <br>(Be patient though, convincing others takes time!)</b>
+                    </font></p>
+                    <br>
+                    <br>
+                    <br>  
+                    <br>
+                    <div class="w3-container"> 
+                        <iframe id="models" src="play/chapter2/uitreverse2.html" style="position:relative; width:550px; height:600px; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe> 
+                    </div>                
                 </section>
             </section>
 
+            <!-- Larger reverse model -->
             <section>
-                <p>Now that you've mastered the Spiral of Silence, let's try applying what you've learned to a real-life example.</p>
+                <section data-background ="">
+                    <p id = 'slide_text'><font style="position:relative">Let's try influencing everyone, shall we? Don't worry, the triangles you influenced will help you influence others too! <b id='instructions'><br>Hint: After influencing one group, you can move to a different group</b></font>
+                    </font></p>
+                    
+                    <div class="w3-container"> 
+                        <iframe id="models" src="play/chapter2/uitreverse.html" style="position:relative; width:550px; height:640px; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
+                    </div>                
+                </section>
             </section>
+
+
+
+            <section data-background="https://media.giphy.com/media/UuXrHFBLIOmYg/giphy.gif" class="present"  style="top: 269.5px; display: block;">
+                <p id='slide_text'><b id = 'emphasis'><font color="white">Congratulations! You've just learnt a new theory!</b> <br>Now that you've mastered the basics of Spiral of Silence, let's see what happens in reality.</font></p>
+            </section>
+
+
+            <section>
+                <br>
+                <iframe src="play/charisma_reverse_model/charisma1.html" style="position:relative; width:1000px; height:680px; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>                  
+            </section> 
+
+             <section>
+                <br>
+                <iframe src="play/resistance_charisma_reverse_model/resistancecharisma1.html" style="position:relative; width:1000px; height:680px; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
+                  
+            </section> 
 
             <section>
                 <section>
@@ -160,9 +224,8 @@
         <script>
             // More info https://github.com/hakimel/reveal.js#configuration
             Reveal.initialize({
-            
-
-
+                width:'100%',
+             
                 history: true,
                 // More info https://github.com/hakimel/reveal.js#dependencies
                 dependencies: [

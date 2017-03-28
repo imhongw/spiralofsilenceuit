@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<title>Reverse Model</title>
+	<link href="charisma.css" rel="stylesheet" type="text/css">
+	<link href="doubleslider.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="container">
+	<canvas id="canvas" width="500" height="500"></canvas>	
+	<br>
+	<div id="slidercontainer">
+        
+            <p id ="slide_text">
+                In reality, a person's charisma matters in determining whether or not another person listens to you. 
+                <br>
+                <br>
+                <b id = "instructions">
+                    Move the slider to adjust level of charisma!
+                </b>
+            </p>
+		<div id ="slide_text">
+            Circle has <b id = "emphasis"><span id="charisma_text"></span></b> </font> charisma now!
+        </div>
+		<br>
+		<div id="slider"></div>
+		<br>
+		<br>
+		<p id ="slide_text">
+            Notice how the speed of influencing the other shape changes? People with <b id ="emphasis">more charisma are more persuasive in general</b> and can influence others more quickly.
+        </p>
+	</div>
+<div id="reset"></div>
+</div>
+</body>
+</html>
+
+<script src="../lib/Mouse.js"></script>
+<script src="charisma1.js"></script>
+<script>window.IS_IN_SIGHT = true;</script>
+
+
+<ul>
+  <li><a href="#" class="round green" onclick = "reverseButton()">Speak<span class="round">Time to man up and speak!</span></a></li>
+  <li><a href="#" class="round red" onclick="reset()">Reset<span class="round">Need a restart? </span></a></li>
+</ul> 
+
+<script src="doubleslider.js"></script>
+<script>
+var charisma_text = document.getElementById("charisma_text");
+
+var whatever = new DoubleSlider(document.getElementById("slider"),{
+	backgrounds:[
+		{color:"#679BEC"},
+		{color:"#8598B5"},
+		{color:"#2095dc"}
+	],
+	values:[0.50,1.02],
+	onChange:function(values){
+		window.CHARISMA = values[0]/100;
+		charisma_text.innerHTML = Math.round(window.CHARISMA*10000)+"%";
+
+	}
+});
+
+window.IS_IN_SIGHT = true;
+
+</script>
