@@ -13,8 +13,9 @@ var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5)
 
 
 
-window.RATIO_TRIANGLES = 0.5;
-window.RATIO_SQUARES = 0.5;
+window.RATIO_MYSELF = 0.02;
+window.RATIO_BULLY = 0.005;
+//window.RATIO_SQUARES = 0.5;
 window.EMPTINESS = 0.2;
 
 
@@ -37,10 +38,16 @@ addAsset("yaySquare","../img/yay_square.png");
 addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
 addAsset("bully", "../img/badsprite.png");
-addAsset("bystander", "../img/goodsprite.png")
+addAsset("bystander", "../img/goodsprite.png");
+addAsset("changedbully", "../img/changedbadsprite.png");
+addAsset("transparent", "../img/transparent.png");
+addAsset("bulliedsprite", "../img/bulliedsprite.png");
 
 var IS_PICKING_UP = false;
 var lastMouseX, lastMouseY;
+var CHARISMA = 0.005;
+var RESISTANCE = 0.005;
+var FILL = 0.7;
 
 function Draggable(x,y){
 	
@@ -116,14 +123,21 @@ function Draggable(x,y){
 
 	var lastPressed = false;
 	self.update = function(){
-
+		//var img = document.getElementById("desertbackground.png");
+		// ctx.createpattern(img, "repeat");
+		// ctx.fillRect(0,0,canvas.width,canvas.height);
+		//ctx.fillStyle = "#212F3C";	
+		//ctx.fillRect(0,0,canvas.width,canvas.height);
 		// Shakiness?
 		self.shaking = false;
 		self.bored = false;
+		self.changeable = false;
+		self.mainchar = false;
 
 		if(!self.dragged){
 			var neighbors = 0;
 			var same = 0;
+			var notSame = 0;
 			for(var i=0;i<draggables.length;i++){
 				var d = draggables[i];
 				if(d==self) continue;
@@ -133,22 +147,22 @@ function Draggable(x,y){
 					neighbors++;
 					if(d.color==self.color){
 						same++;
+					}else if(d.color!=self.color) {
+						notSame++;
+					}else if(self.color==others && d.color==self.color){
+						self.shaking = false;
 					}
 				}
 			}
-			if(neighbors>0){
-				self.sameness = (same/neighbors);
-			}else{
-				self.sameness = 1;
-			}
-			if(self.sameness<BIAS || self.sameness>NONCONFORM){
+			if(neighbors>0 && (same/neighbors)<0.33){
 				self.shaking = true;
 			}
-			if(self.sameness>0.99){
+			if(neighbors==0 || (same/neighbors)>0.99){
+				self.shaking = true;
 				self.bored = true;
 			}
-			if(neighbors==0){
-				self.shaking = false;
+			if(neighbors>0 && notSame>0) {
+				self.changeable = true;
 			}
 		}
 
@@ -190,22 +204,59 @@ function Draggable(x,y){
 
 		// Draw thing
 		var img;
-		if(self.color=="triangle"){
+			if(self.color=="myself"){
+			self.mainchar = true;
 			if(self.shaking){
-				img = images.sadTriangle;
+				img = images.bystander;
 			}else if(self.bored){
-				img = images.mehTriangle;
+				img = images.bystander;
 			}else{
-				img = images.yayTriangle;
+				if(self.dragged && !self.shaking) {			
+						img = images.bystander;
+					}else {
+						img = images.bystander;
+					}			
 			}
-		}else{
-			if(self.shaking){
-				img = images.sadSquare;
-			}else if(self.bored){
-				img = images.mehSquare;
+		}else if(self.color == "bully") { //bully can transform into others
+				img = images.bully;
+			self.dragged = false;
+			if(self.changeable && reverse) {
+				if(Math.random()<CHARISMA || (CHARISMA==0.01 && RESISTANCE<=0.001)){					
+					self.color = "changedself";
+				}
 			}else{
-				img = images.yaySquare;
+				self.color = "bully";
 			}
+		}else if(self.color == "changedself") {
+			img = images.changedbully;
+			self.dragged = false;
+			if(self.changeable && reverse) {
+				if(Math.random()<RESISTANCE){
+					self.color = "bully";
+				}
+			}else {
+				self.color = "changedself";
+			}
+		}else if(self.color == "others"){
+			img = images.bulliedsprite;
+			var neighbors = 0;
+			var scared = 0;
+			var notSame = 0;
+			for(var i=0;i<draggables.length;i++){
+				var d = draggables[i];
+				if(d==self) continue;
+				var dx = d.x-self.x;
+				var dy = d.y-self.y;
+				if(dx*dx+dy*dy<DIAGONAL_SQUARED){
+					neighbors++;
+					if(self.color=="others" && d.color!= "bully"){
+						self.shaking = false;
+					}
+
+				}
+			}
+		}else {
+			img = images.yaySquare;
 		}
 
 		// Dangle
@@ -223,6 +274,14 @@ function Draggable(x,y){
 
 }
 
+var reverse = false;
+function reverseButton() {
+	if(reverse==false) 
+		reverse = true;
+	else
+		reverse =false;
+}
+
 window.START_SIM = false;
 
 var draggables;
@@ -238,11 +297,42 @@ window.reset = function(){
 	stats_ctx.clearRect(0,0,stats_canvas.width,stats_canvas.height);
 
 	draggables = [];
+	//fill box with self and others
 	for(var x=0;x<GRID_SIZE;x++){
 		for(var y=0;y<GRID_SIZE;y++){
-			if(Math.random()<(1-window.EMPTINESS)){
+			if(Math.random()<(window.FILL)){
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
-				draggable.color = (Math.random()<window.RATIO_TRIANGLES) ? "triangle" : "square";
+				draggable.color = (Math.random()<window.RATIO_MYSELF) ? "myself" : "bully";
+				draggables.push(draggable);
+			}
+		}
+	}
+	//fill bullies in all other empty spots
+	for(var x=0;x<GRID_SIZE;x++){
+		for(var y=0;y<GRID_SIZE;y++){
+
+			var spot = {
+				x: (x+0.5)*TILE_SIZE,
+				y: (y+0.5)*TILE_SIZE
+			}
+
+			var spotTaken = false;
+			for(var i=0;i<draggables.length;i++){
+				var d = draggables[i];
+				var dx = d.gotoX-spot.x;
+				var dy = d.gotoY-spot.y;
+				if(dx*dx+dy*dy<10){
+					spotTaken=true;
+					break;
+				}
+			}
+
+			if(spotTaken == false){
+				if(Math.random()<0.1) {
+				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
+				
+				draggable.color = "others";
+				}
 				draggables.push(draggable);
 			}
 		}
@@ -252,6 +342,7 @@ window.reset = function(){
 	for(var i=0;i<draggables.length;i++){
 		draggables[i].update();
 	}
+	window.reverse = false;
 	writeStats();
 
 }
@@ -327,14 +418,34 @@ window.writeStats = function(){
 	console.log("something is written");
 	if(!draggables || draggables.length==0) return;
 
-	// Average Sameness Ratio
-	var total = 0;
+	// Average bullies
+	var totalBullies = 0;
+	var totalOthers = 0;
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
-		total += d.sameness || 0;
+		if(d.color=="bully"){
+			totalBullies++;
+		}
+		if(d.color!="bully"){
+			totalOthers++;
+		}
 	}
-	var avg = total/draggables.length;
-	if(isNaN(avg)) debugger;
+
+
+	var avgBullies = (totalBullies)/(draggables.length);
+	if(isNaN(avgBullies)) debugger;
+
+	// //Average converted 
+	var totalConverted = 0;
+	for(var i=0;i<draggables.length;i++){
+		var d = draggables[i];
+		if(d.color=="changedself")
+			totalConverted++;
+		
+	}
+	var avgConverted = (totalConverted)/draggables.length;
+	if(isNaN(avgBullies)) debugger;
+
 
 	// If stats oversteps, bump back
 	if(STATS.steps>320+STATS.offset){
@@ -346,27 +457,33 @@ window.writeStats = function(){
 		stats_ctx.drawImage(tmp_stats,-119,0);
 	}
 
-	// AVG -> SEGREGATION
-	var segregation = (avg-0.5)*2;
-	if(segregation<0) segregation=0;
+	// // AVG -> SEGREGATION
+	// var segregation = (avg-0.5)*2;
+	// if(segregation<0) segregation=0;
 
 	// Graph it
-	stats_ctx.fillStyle = "#cc2727";
-	var x = STATS.steps - STATS.offset;
-	var y = 250 - segregation*250+10;
-	stats_ctx.fillRect(x,y,1,5);
+	// stats_ctx.fillStyle = "#cc2727";
+	 //var x = STATS.steps - STATS.offset;
+	 //var y = 250 - segregation*250+10;
+	//stats_ctx.fillRect(x,y,1,1);
+	var x = 30;
+	var y = 30;
 
 	// Text
-	stats_text.innerHTML = Math.floor(segregation*100)+"%";
-	stats_text.style.top = Math.round(y-15)+"px";
-	stats_text.style.left = Math.round(x+35)+"px";
+	stats_text.innerHTML = Math.floor(avgBullies*100)+"% bullies";
+	stats_text.style.top = Math.round(y+15)+"px";
+	stats_text.style.left = Math.round(x+95)+"px";
+	stats2_text.innerHTML = Math.floor(avgConverted*100)+"% converted";
+	stats2_text.style.top = Math.round(y+45)+"px";
+	stats2_text.style.left = Math.round(x+95)+"px";
+	//stats_text.innerHTML = Math.floor(FILL*100)+"%";
 
-	// Button
-	if(START_SIM){
-		document.getElementById("moving").classList.add("moving");
-	}else{
-		document.getElementById("moving").classList.remove("moving");
-	}
+	// // Button
+	// if(START_SIM){
+	// 	document.getElementById("moving").classList.add("moving");
+	// }else{
+	// 	document.getElementById("moving").classList.remove("moving");
+	// }
 
 }
 
@@ -386,7 +503,8 @@ function step(){
 	var shaking = [];
 	for(var i=0;i<draggables.length;i++){
 		var d = draggables[i];
-		if(d.shaking) shaking.push(d);
+		//if(d.shaking) shaking.push(d);
+		if(d.mainchar) shaking.push(d);
 	}
 
 	// Pick a random shaker
@@ -415,6 +533,7 @@ function step(){
 			}
 
 			if(!spotTaken){
+				if(Math.random()<0.002)
 				empties.push(spot);
 			}
 

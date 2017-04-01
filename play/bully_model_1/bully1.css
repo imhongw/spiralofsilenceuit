@@ -1,8 +1,16 @@
-html, body{
-	margin:2px;
+body{
+	margin:0;
 	overflow: hidden;
-	width:100%;
-	height:100%;
+
+	font-family: sans-serif;
+	font-size: 1.5em;
+	font-weight: 100;
+
+
+	/*color:#ddd;*/
+}
+iframe{
+	border: none;
 }
 
 div{
@@ -12,7 +20,7 @@ div{
 	-o-user-select: none;
 	user-select: none;    
 }
-/*#container{
+#container{
 	position: relative;
 	width:950px;
 	height:600px;
@@ -20,16 +28,154 @@ div{
 #canvas{
 	display: block;
 	float:left;
+
 }
-#resetcontainer{
+#slidercontainer{
 	margin-top:0;
 	width:400px;
 	height:600px;
 	position:relative;
 	overflow:hidden;
 	float:right;
+}	
+
+div{
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;    
 }
+#container{
+	position: relative;
+	width:1030px;
+	height:600px;
+}
+#canvas{
+	display: block;
+	float:left;
+}
+#stats{
+	width:400px; height:100%;
+	float:left;
+	margin-left: 20px;
+	font-size: 16px;
+	text-align: left;
+}
+#stats_text{
+	font-size: 25px;
+    line-height: 1.5;
+    position: absolute;
+    text-align: center;
+    font-style: normal;
+    font-family: "Josefin Sans"; 
+    text-align: justify;
+    color: #4D5868;
+    float: right; 
+}
+#stats2_text{
+	font-size: 25px;
+    line-height: 1.5;
+    position: absolute;
+    text-align: center;
+    font-style: normal;
+    font-family: "Josefin Sans"; 
+    text-align: justify;
+    color: #4D5868;
+    float: right; 
+}
+
+#stats_canvas_container{
+	background:url(../img/scorebox.png);
+	width:400px; height:165px;
+	position:relative; overflow:hidden;
+	margin-bottom: 20px;
+}
+#stats_canvas{
+	position: absolute;
+	top:-1px;
+	right:-1px;
+}
+
+#fill_canvas {
+	background:url(../img/scorebox.png);
+}
+
+/*.ui{
+	background: url(../img/ui_buttons.png);
+	width:195px;
+	height:52px;
+
+	cursor: pointer;
+	float:left;
+
+	position: relative;
+	top:0px;
+
+	-webkit-transition: top 0.1s linear;
+    -moz-transition: top 0.1s linear;
+    -ms-transition: top 0.1s linear;
+    -o-transition: top 0.1s linear;
+    transition: top 0.1s linear;
+
+}
+.ui:hover{
+	top:-5px;
+}
+.ui:active{
+	top:3px;
+}
+
+#reset{ background-position: 0 -104px; }
+#reset:hover{ background-position: 0 -156px; }
+
+#moving{ background-position: 0 -208px; }
+#moving:hover{ background-position: 0 -260px; }
+
+#moving.moving{ background-position: 0 -312px; }
+#moving.moving:hover{ background-position: 0 -364px; }
 */
+span.highlight{
+	color:#cc2727;
+}
+
+/*********************************************
+ * Text Styles (edited zh)
+ *********************************************/
+
+@import url(https://fonts.googleapis.com/css?family=Cardo:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400italic,700italic,400,700);
+
+#subtext {
+    font-size: 35px;
+    font-family: "Libre Baskerville"; 
+    font-style: italic;
+    color: black
+}
+
+#emphasis {
+    color: #1C2A40;
+    font-size: 25px;
+}
+
+#instructions {
+    color: #1C2A40;
+    font-size: 20px;
+    font-family: "Josefin Sans";
+}
+#slide_text {
+    font-size: 25px;
+    line-height: 1.5;
+    position: relative;
+    text-align: center;
+    font-style: normal;
+    font-family: "Josefin Sans"; 
+    text-align: justify;
+    color: #4D5868;
+    float: right; 
+        
+}
+
 
 * {
     margin: 0;
@@ -45,17 +191,11 @@ div{
 		height: 100%;
 		font-family: "helvetica neue", helvetica, arial, sans-serif;
 		font-size: 13px;
-		/*text-align: center;*/
-/*		left: 75px;
-		top: 30px;*/
 	}
 
 	ul {
 		margin: -40px auto;
 		margin-left: 120px;
-/*		left: 75px;
-		top: 30px;*/
-		/*text-align: center;*/
 	}
 
 	li {
@@ -64,8 +204,8 @@ div{
 		display: inline-block;
 		width: 100px;
 		height: 100px;
-		left: 450px;
-		top: -250px;
+		top:60px;
+		left:-10px;
 	}
 
 	@-moz-keyframes rotate {
@@ -91,10 +231,12 @@ div{
 	.round {
 		display: block;
 		position: absolute;
+		left: 0;
+		top: 0;
 		width: 100%;
 		height: 100%;
 		padding-top: 30px;		
-		text-decoration: none;		
+		text-decoration: none;
 		text-align: center;
 		font-size: 25px;		
 		text-shadow: 0 1px 0 rgba(255,255,255,.7);
