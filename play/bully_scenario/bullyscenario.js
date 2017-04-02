@@ -218,7 +218,7 @@ function Draggable(x,y){
 					}			
 			}
 		}else if(self.color == "bully") { //bully can transform into others
-				img = images.bully;
+				img = images.yayTriangle;
 			self.dragged = false;
 			if(self.changeable && reverse) {
 				if(Math.random()<CHARISMA || (CHARISMA==0.01 && RESISTANCE<=0.001)){					
@@ -238,7 +238,7 @@ function Draggable(x,y){
 				self.color = "changedself";
 			}
 		}else if(self.color == "others"){
-			img = images.bulliedsprite;
+			img = images.mehSquare;
 			var neighbors = 0;
 			var scared = 0;
 			var notSame = 0;
