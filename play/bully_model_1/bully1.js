@@ -38,10 +38,9 @@ addAsset("yaySquare","../img/yay_square.png");
 addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
 addAsset("bully", "../img/badsprite.png");
-addAsset("bystander", "../img/goodsprite.png");
-addAsset("changedbully", "../img/changedbadsprite.png");
-addAsset("transparent", "../img/transparent.png");
-addAsset("bulliedsprite", "../img/bulliedsprite.png");
+addAsset("bystander", "goodsprite.png");
+addAsset("changedbully", "changedbadsprite.png");
+addAsset("bulliedsprite", "bulliedsprite.png");
 
 var IS_PICKING_UP = false;
 var lastMouseX, lastMouseY;

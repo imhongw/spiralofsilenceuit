@@ -37,11 +37,10 @@ addAsset("sadTriangle","../img/sad_triangle.png");
 addAsset("yaySquare","../img/yay_square.png");
 addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
-addAsset("bully", "../img/badsprite.png");
-addAsset("bystander", "../img/goodsprite.png");
-addAsset("changedbully", "../img/changedbadsprite.png");
-addAsset("transparent", "../img/transparent.png");
-addAsset("bulliedsprite", "../img/bulliedsprite.png");
+addAsset("bully", "badsprite.png");
+addAsset("bystander", "goodsprite.png");
+addAsset("changedbully", "changedbadsprite.png");
+addAsset("bulliedsprite", "bulliedsprite.png");
 
 var IS_PICKING_UP = false;
 var lastMouseX, lastMouseY;
@@ -218,7 +217,7 @@ function Draggable(x,y){
 					}			
 			}
 		}else if(self.color == "bully") { //bully can transform into others
-				img = images.yayTriangle;
+				img = images.bully;
 			self.dragged = false;
 			if(self.changeable && reverse) {
 				if(Math.random()<CHARISMA || (CHARISMA==0.01 && RESISTANCE<=0.001)){					
@@ -238,7 +237,7 @@ function Draggable(x,y){
 				self.color = "changedself";
 			}
 		}else if(self.color == "others"){
-			img = images.mehSquare;
+			img = images.bulliedsprite;
 			var neighbors = 0;
 			var scared = 0;
 			var notSame = 0;
