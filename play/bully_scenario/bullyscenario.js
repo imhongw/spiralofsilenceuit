@@ -31,12 +31,12 @@ function addAsset(name,src){
 	images[name].onload = onImageLoaded;
 	images[name].src = src;
 }
-addAsset("yayTriangle","../img/yay_triangle.png");
-addAsset("mehTriangle","../img/meh_triangle.png");
-addAsset("sadTriangle","../img/sad_triangle.png");
-addAsset("yaySquare","../img/yay_square.png");
-addAsset("mehSquare","../img/meh_square.png");
-addAsset("sadSquare","../img/sad_square.png");
+// addAsset("yayTriangle","../img/yay_triangle.png");
+// addAsset("mehTriangle","../img/meh_triangle.png");
+// addAsset("sadTriangle","../img/sad_triangle.png");
+// addAsset("yaySquare","../img/yay_square.png");
+// addAsset("mehSquare","../img/meh_square.png");
+// addAsset("sadSquare","../img/sad_square.png");
 addAsset("bully", "badsprite.png");
 addAsset("bystander", "goodsprite.png");
 addAsset("changedbully", "changedbadsprite.png");
@@ -217,7 +217,7 @@ function Draggable(x,y){
 					}			
 			}
 		}else if(self.color == "bully") { //bully can transform into others
-				img = images.bully;
+				img = images.bulliedsprite;
 			self.dragged = false;
 			if(self.changeable && reverse) {
 				if(Math.random()<CHARISMA || (CHARISMA==0.01 && RESISTANCE<=0.001)){					
@@ -255,7 +255,7 @@ function Draggable(x,y){
 				}
 			}
 		}else {
-			img = images.yaySquare;
+			img = images.bulliedsprite;
 		}
 
 		// Dangle
