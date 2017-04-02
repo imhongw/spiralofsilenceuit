@@ -41,7 +41,7 @@
 </html>
 
 <script src="../lib/Mouse.js"></script>
-<script src="bully1.js"></script>
+<script src="bully2.js"></script>
 <script src="doubleslider.js"></script>
 
 
@@ -89,7 +89,7 @@ var whatever = new DoubleSlider(document.getElementById("slider1"),{
 		{color:"#8598B5"},
 		{color:"#2095dc"}
 	],
-	values:[0.78,1.02],
+	values:[0.19,1.02],
 	onChange:function(values){
 		window.CHARISMA = values[0]/100;
 		charisma_text.innerHTML = Math.round(window.CHARISMA*10000)+"%";
@@ -104,7 +104,7 @@ var whatever = new DoubleSlider(document.getElementById("slider2"),{
 		{color:"#8598B5"},
 		{color:"#2095dc"}
 	],
-	values:[0.22,1.02],
+	values:[0.69,1.02],
 	onChange:function(values){
 		window.RESISTANCE= values[0]/100;
 		resistance_text.innerHTML = Math.round(window.RESISTANCE*10000)+"%";

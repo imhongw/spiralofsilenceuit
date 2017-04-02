@@ -45,8 +45,8 @@ addAsset("bulliedsprite", "../img/bulliedsprite.png");
 
 var IS_PICKING_UP = false;
 var lastMouseX, lastMouseY;
-var CHARISMA = 0.0078;
-var RESISTANCE = 0.0022;
+var CHARISMA = 0.0019;
+var RESISTANCE = 0.0069;
 var FILL = 0.7;
 
 function Draggable(x,y){

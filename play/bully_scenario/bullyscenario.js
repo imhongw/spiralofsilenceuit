@@ -13,7 +13,7 @@ var DIAGONAL_SQUARED = (TILE_SIZE+5)*(TILE_SIZE+5) + (TILE_SIZE+5)*(TILE_SIZE+5)
 
 
 
-window.RATIO_MYSELF = 0.02;
+window.RATIO_MYSELF = 0.00;
 window.RATIO_BULLY = 0.005;
 //window.RATIO_SQUARES = 0.5;
 window.EMPTINESS = 0.2;
@@ -45,8 +45,8 @@ addAsset("bulliedsprite", "../img/bulliedsprite.png");
 
 var IS_PICKING_UP = false;
 var lastMouseX, lastMouseY;
-var CHARISMA = 0.0078;
-var RESISTANCE = 0.0022;
+var CHARISMA = 0.005;
+var RESISTANCE = 0.005;
 var FILL = 0.7;
 
 function Draggable(x,y){
@@ -154,11 +154,11 @@ function Draggable(x,y){
 					}
 				}
 			}
-			if(neighbors>0 && (same/neighbors)<0.33){
+			if(neighbors>0 && (same/neighbors)<0.63){
 				self.shaking = true;
 			}
 			if(neighbors==0 || (same/neighbors)>0.99){
-				self.shaking = true;
+				self.shaking = false;
 				self.bored = true;
 			}
 			if(neighbors>0 && notSame>0) {
@@ -328,7 +328,7 @@ window.reset = function(){
 			}
 
 			if(spotTaken == false){
-				if(Math.random()<0.1) {
+				if(Math.random()<0.2) {
 				var draggable = new Draggable((x+0.5)*TILE_SIZE, (y+0.5)*TILE_SIZE);
 				
 				draggable.color = "others";

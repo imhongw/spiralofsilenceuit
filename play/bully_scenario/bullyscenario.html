@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Bully Model</title>
-	<link href="bully1.css" rel="stylesheet" type="text/css">
+	<link href="bullyscenario.css" rel="stylesheet" type="text/css">
 	<link href="doubleslider.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -13,26 +13,35 @@
 		}
 	</style>
 	<div id="container">
-			<canvas id="canvas" width="600" height="600"></canvas>
+		<canvas id="canvas" width="600" height="600"></canvas>
 		<div id="stats">
-			<div id="stats_canvas_container">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<font id="slide_text">In dinoland, we have the Trexes (big bad T-rex) and Cera (the triceratops) who gets bullied by Trexes who think it's okay to bully! </font> 
+			<br>
+			
+			<font id="slide_text">Whenever Cera is surrounded by red Trexes, she will always shiver in fear because bad Trexes want a little bite!:( If Cera gets close to another Cera or anyone other than red Trexes, she will calm down. <br> (From this point onwards only navigate by clicking on "Next") </font> 
+			<div id="stats_canvas_container" hidden>
 				<canvas id="stats_canvas" width="100" height="100"></canvas>
 				<div id="stats_text"></div>
 				<div id="stats2_text"></div>
 			</div>
 
-			<font id="instructions">Fill up the box with <span class="highlight">around <span id="fill_text">70%</span></span> of dinosaurs. </font>
+			<font id="instructions" hidden>Fill up the box with <span class="highlight">around <span id="fill_text">70%</span></span> of dinosaurs. </font>
 			<br>
-			<div id="slider"></div>
+			<div id="slider" hidden></div>
 			<br>
-			<font id="instructions">Littlefoot has <span class="highlight"><span id="charisma_text"></span> </span> charisma now!</font>
-			<div id="slider1"></div>
+			<font id="instructions" hidden>Littlefoot has <span class="highlight"><span id="charisma_text"></span> </span> charisma now!</font>
+			<div id="slider1" hidden></div>
 			<br>
-			<font id="instructions"> T-Rex has <span class="highlight"><span id="resistance_text"></span> </span> resistance now!</font>
-			<div id="slider2"></div>
-			<ul>
+			<font id="instructions" hidden> T-Rex has <span class="highlight"><span id="resistance_text"></span> </span> resistance now!</font>
+			<div id="slider2" hidden></div>
+			<ul hidden>
 			 	<li><a href="#" class="round green" onclick = "reverseButton(); START_SIM=!START_SIM; doneBuffer=60; window.writeStats()">Play<span class="round">Watch the simulation!</span></a></li>
-			 	<!-- START_SIM=!START_SIM -->
   				<li><a href="#" class="round red" onclick="reset()">Reset<span class="round">Need a restart? </span></a></li>
 			</ul> 
 		</div>
@@ -41,7 +50,7 @@
 </html>
 
 <script src="../lib/Mouse.js"></script>
-<script src="bully1.js"></script>
+<script src="bullyscenario.js"></script>
 <script src="doubleslider.js"></script>
 
 
@@ -89,7 +98,7 @@ var whatever = new DoubleSlider(document.getElementById("slider1"),{
 		{color:"#8598B5"},
 		{color:"#2095dc"}
 	],
-	values:[0.78,1.02],
+	values:[0.50,1.02],
 	onChange:function(values){
 		window.CHARISMA = values[0]/100;
 		charisma_text.innerHTML = Math.round(window.CHARISMA*10000)+"%";
@@ -104,7 +113,7 @@ var whatever = new DoubleSlider(document.getElementById("slider2"),{
 		{color:"#8598B5"},
 		{color:"#2095dc"}
 	],
-	values:[0.22,1.02],
+	values:[0.50,1.02],
 	onChange:function(values){
 		window.RESISTANCE= values[0]/100;
 		resistance_text.innerHTML = Math.round(window.RESISTANCE*10000)+"%";

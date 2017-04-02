@@ -1,0 +1,338 @@
+body{
+	margin:0;
+	overflow: hidden;
+
+	font-family: sans-serif;
+	font-size: 1.5em;
+	font-weight: 100;
+
+
+	/*color:#ddd;*/
+}
+iframe{
+	border: none;
+}
+
+div{
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;    
+}
+#container{
+	position: relative;
+	width:950px;
+	height:600px;
+}
+#canvas{
+	display: block;
+	float:left;
+
+}
+#slidercontainer{
+	margin-top:0;
+	width:400px;
+	height:600px;
+	position:relative;
+	overflow:hidden;
+	float:right;
+}	
+
+div{
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;    
+}
+#container{
+	position: relative;
+	width:1030px;
+	height:600px;
+}
+#canvas{
+	display: block;
+	float:left;
+}
+#stats{
+	width:400px; height:100%;
+	float:left;
+	margin-left: 20px;
+	font-size: 16px;
+	text-align: left;
+}
+#stats_text{
+	font-size: 25px;
+    line-height: 1.5;
+    position: absolute;
+    text-align: center;
+    font-style: normal;
+    font-family: "Josefin Sans"; 
+    text-align: justify;
+    color: #4D5868;
+    float: right; 
+}
+#stats2_text{
+	font-size: 25px;
+    line-height: 1.5;
+    position: absolute;
+    text-align: center;
+    font-style: normal;
+    font-family: "Josefin Sans"; 
+    text-align: justify;
+    color: #4D5868;
+    float: right; 
+}
+
+#stats_canvas_container{
+	background:url(../img/scorebox.png);
+	width:400px; height:165px;
+	position:relative; overflow:hidden;
+	margin-bottom: 20px;
+}
+#stats_canvas{
+	position: absolute;
+	top:-1px;
+	right:-1px;
+}
+
+#fill_canvas {
+	background:url(../img/scorebox.png);
+}
+
+/*.ui{
+	background: url(../img/ui_buttons.png);
+	width:195px;
+	height:52px;
+
+	cursor: pointer;
+	float:left;
+
+	position: relative;
+	top:0px;
+
+	-webkit-transition: top 0.1s linear;
+    -moz-transition: top 0.1s linear;
+    -ms-transition: top 0.1s linear;
+    -o-transition: top 0.1s linear;
+    transition: top 0.1s linear;
+
+}
+.ui:hover{
+	top:-5px;
+}
+.ui:active{
+	top:3px;
+}
+
+#reset{ background-position: 0 -104px; }
+#reset:hover{ background-position: 0 -156px; }
+
+#moving{ background-position: 0 -208px; }
+#moving:hover{ background-position: 0 -260px; }
+
+#moving.moving{ background-position: 0 -312px; }
+#moving.moving:hover{ background-position: 0 -364px; }
+*/
+span.highlight{
+	color:#cc2727;
+}
+
+/*********************************************
+ * Text Styles (edited zh)
+ *********************************************/
+
+@import url(https://fonts.googleapis.com/css?family=Cardo:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400italic,700italic,400,700);
+
+#subtext {
+    font-size: 35px;
+    font-family: "Libre Baskerville"; 
+    font-style: italic;
+    color: black
+}
+
+#emphasis {
+    color: #1C2A40;
+    font-size: 25px;
+}
+
+#instructions {
+    color: #1C2A40;
+    font-size: 20px;
+    font-family: "Josefin Sans";
+}
+#slide_text {
+    font-size: 25px;
+    line-height: 1.5;
+    position: relative;
+    text-align: center;
+    font-style: normal;
+    font-family: "Josefin Sans"; 
+    text-align: justify;
+    color: #4D5868;
+    float: right; 
+        
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+  	-moz-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+	body {
+		width: 100%;
+		height: 100%;
+		font-family: "helvetica neue", helvetica, arial, sans-serif;
+		font-size: 13px;
+	}
+
+	ul {
+		margin: -40px auto;
+		margin-left: 120px;
+	}
+
+	li {
+		list-style: none;
+		position: relative;
+		display: inline-block;
+		width: 100px;
+		height: 100px;
+		top:60px;
+		left:-10px;
+	}
+
+	@-moz-keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	@-webkit-keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	@-o-keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	@keyframes rotate {
+		0% {transform: rotate(0deg);}
+		100% {transform: rotate(-360deg);}
+	}
+
+	.round {
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		padding-top: 30px;		
+		text-decoration: none;
+		text-align: center;
+		font-size: 25px;		
+		text-shadow: 0 1px 0 rgba(255,255,255,.7);
+		letter-spacing: -.065em;
+		font-family: "Hammersmith One", sans-serif;		
+		-webkit-transition: all .25s ease-in-out;
+		-o-transition: all .25s ease-in-out;
+		-moz-transition: all .25s ease-in-out;
+		transition: all .25s ease-in-out;
+		box-shadow: 2px 2px 7px rgba(0,0,0,.2);
+		border-radius: 300px;
+		z-index: 1;
+		border-width: 4px;
+		border-style: solid;
+	}
+
+	.round:hover {
+		width: 130%;
+		height: 130%;
+		left: -15%;
+		top: -15%;
+		font-size: 33px;
+		padding-top: 38px;
+		-webkit-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		-o-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		-moz-box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		box-shadow: 5px 5px 10px rgba(0,0,0,.3);
+		z-index: 2;
+		border-size: 10px;
+		-webkit-transform: rotate(-360deg);
+		-moz-transform: rotate(-360deg);
+		-o-transform: rotate(-360deg);
+		transform: rotate(-360deg);
+	}
+
+	a.red {
+		background-color: rgba(239,57,50,1);
+		color: rgba(133,32,28,1);
+		border-color: rgba(133,32,28,.2);
+	}
+
+	a.red:hover {
+		color: rgba(239,57,50,1);
+	}
+
+	a.green {
+		background-color: rgba(1,151,171,1);
+		color: rgba(0,63,71,1);
+		border-color: rgba(0,63,71,.2);
+	}
+
+	a.green:hover {
+		color: rgba(1,151,171,1);
+	}
+
+	a.yellow {
+		background-color: rgba(252,227,1,1);
+		color: rgba(153,38,0,1);
+		border-color: rgba(153,38,0,.2);
+	}
+
+	a.yellow:hover {
+		color: rgba(252,227,1,1);
+	}
+
+	.round span.round {
+		display: block;
+		opacity: 0;
+		-webkit-transition: all .5s ease-in-out;
+		-moz-transition: all .5s ease-in-out;
+		-o-transition: all .5s ease-in-out;
+		transition: all .5s ease-in-out;
+		font-size: 1px;
+		border: none;
+		padding: 40% 20% 0 20%;
+		color: #fff;
+	}
+
+	.round span:hover {
+		opacity: .85;
+		font-size: 16px;
+		-webkit-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+		-moz-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+		-o-text-shadow: 0 1px 1px rgba(0,0,0,.5);
+		text-shadow: 0 1px 1px rgba(0,0,0,.5);	
+	}
+
+	.green span {
+		background: rgba(0,63,71,.7);		
+	}
+
+	.red span {
+		background: rgba(133,32,28,.7);		
+	}
+
+	.yellow span {
+		background: rgba(161,145,0,.7);	
+
+	}
