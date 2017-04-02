@@ -31,16 +31,10 @@ function addAsset(name,src){
 	images[name].onload = onImageLoaded;
 	images[name].src = src;
 }
-addAsset("yayTriangle","../img/yay_triangle.png");
-addAsset("mehTriangle","../img/meh_triangle.png");
-addAsset("sadTriangle","../img/sad_triangle.png");
-addAsset("yaySquare","../img/yay_square.png");
-addAsset("mehSquare","../img/meh_square.png");
-addAsset("sadSquare","../img/sad_square.png");
-addAsset("bully","badsprite.png");
-addAsset("bystander", "goodsprite.png");
+
+addAsset("bully","verybadsprite.png");
+addAsset("bystander", "verygoodsprite.png");
 addAsset("changedbully", "changedbadsprite.png");
-addAsset("transparent", "transparent.png");
 addAsset("bulliedsprite", "bulliedsprite.png");
 
 var IS_PICKING_UP = false;
