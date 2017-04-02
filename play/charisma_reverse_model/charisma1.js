@@ -164,7 +164,7 @@ function Draggable(x,y){
 
 	self.frame = 0;
 	self.blinking=0;
-	console.log(CHARISMA);
+	//console.log(CHARISMA);
 	self.draw = function(){
 		ctx.save();
 		ctx.translate(self.x,self.y);
