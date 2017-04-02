@@ -32,7 +32,7 @@ function addAsset(name,src){
 	images[name].src = src;
 }
 addAsset("bully", "verybadsprite.png");
-addAsset("bystander", "goodsprite.png");
+addAsset("bystander", "verygoodsprite.png");
 addAsset("changedbully", "changedbadsprite.png");
 addAsset("bulliedsprite", "bulliedsprite.png");
 
