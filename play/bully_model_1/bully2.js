@@ -37,7 +37,7 @@ addAsset("sadTriangle","../img/sad_triangle.png");
 addAsset("yaySquare","../img/yay_square.png");
 addAsset("mehSquare","../img/meh_square.png");
 addAsset("sadSquare","../img/sad_square.png");
-addAsset("bully", "../img/badsprite.png");
+addAsset("bully","../img/badsprite.png");
 addAsset("bystander", "../img/goodsprite.png");
 addAsset("changedbully", "../img/changedbadsprite.png");
 addAsset("transparent", "../img/transparent.png");
