@@ -859,7 +859,7 @@
 
 		if( data.background ) {
 			// Auto-wrap image urls in url(...)
-			if( /^(http|file|\/\/)/gi.test( data.background ) || /\.(svg|png|jpg|jpeg|gif|bmp)$/gi.test( data.background ) ) {
+			if( /^(https|file|\/\/)/gi.test( data.background ) || /\.(svg|png|jpg|jpeg|gif|bmp)$/gi.test( data.background ) ) {
 				slide.setAttribute( 'data-background-image', data.background );
 			}
 			else {
@@ -1559,7 +1559,7 @@
 		var anchors = toArray( document.querySelectorAll( selector ? selector : 'a' ) );
 
 		anchors.forEach( function( element ) {
-			if( /^(http|www)/gi.test( element.getAttribute( 'href' ) ) ) {
+			if( /^(https|www)/gi.test( element.getAttribute( 'href' ) ) ) {
 				element.addEventListener( 'click', onPreviewLinkClicked, false );
 			}
 		} );
@@ -1574,7 +1574,7 @@
 		var anchors = toArray( document.querySelectorAll( 'a' ) );
 
 		anchors.forEach( function( element ) {
-			if( /^(http|www)/gi.test( element.getAttribute( 'href' ) ) ) {
+			if( /^(https|www)/gi.test( element.getAttribute( 'href' ) ) ) {
 				element.removeEventListener( 'click', onPreviewLinkClicked, false );
 			}
 		} );
