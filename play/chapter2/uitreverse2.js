@@ -204,7 +204,11 @@ function Draggable(x,y){
 						img = images.happyCircle;
 					} 
 					else if(reverse == true){
-						img = images.talkingCircle;
+						if(Math.random()<0.5){
+							img = images.talkingCircle;
+						}else {
+							img = images.happyCircle;
+						}
 					}else {
 						img = images.sadCircle;
 					}			

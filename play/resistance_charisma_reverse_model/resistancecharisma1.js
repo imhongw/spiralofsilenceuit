@@ -25,6 +25,8 @@ addAsset("whiteCircle","../img/circle_white.png");
 addAsset("whiteTriangle","../img/triangle_white.png");
 addAsset("yellowTriangle","../img/triangle_yellow.png");
 addAsset("sadCircle","../img/unhappy_circle_white.png");
+addAsset("happyCircle","../img/happy_circle_white.png");
+addAsset("talkingCircle","../img/talking_circle_white.png");
 
 
 var IS_PICKING_UP = false;
@@ -188,18 +190,37 @@ function Draggable(x,y){
 		var notSameLah=0;
 		var same=0;
 		var neighbors=0;
+		var notCircles=0;
+		var isCircle= 0;
 		//circles are the good guys
 		if(self.color=="circle"){ 
-			if(self.shaking){
-				img = images.whiteCircle;
-			}else if(self.bored){
+			for(var i=0;i<draggables.length;i++){
+				var d = draggables[i];
+				if(d.color=="changedcircle"){
+					notCircles++;
+				}
+				if(d.color == "circle") {
+					isCircle++;
+				}
+			}
+			if(notCircles == (draggables.length - isCircle)) {
+				img = images.happyCircle;
+			}else if(self.shaking && !reverse){
+				img = images.happyCircle;
+			}else if(self.bored && !reverse){
 				img = images.whiteCircle;
 			}else{
-					if(self.dragged && !self.shaking) {			
-						img = images.whiteCircle;
+				if(self.dragged && !self.shaking) {			
+					img = images.whiteCircle;
+				}else if(reverse == true) {
+					if(Math.random()<0.5){
+						img = images.talkingCircle;
 					}else {
-						img = images.sadCircle;
-					}			
+						img = images.happyCircle;
+					}
+				}else {
+					img = images.sadCircle;
+				}			
 			}
 		}else if(self.color == "spreader") {
 			img = images.yellowTriangle;
@@ -214,8 +235,32 @@ function Draggable(x,y){
 				self.color = "spreader";
 			}
 		}else if(self.color == "changedcircle") {
-			img = images.whiteCircle;
-			self.dragged = false;
+			for(var i=0;i<draggables.length;i++){
+				var d = draggables[i];
+				if(d.color=="changedcircle"){
+					notCircles++;
+				}
+				if(d.color == "circle") {
+					isCircle++;
+				}
+			}
+			if(notCircles == (draggables.length - isCircle)) {
+				img = images.happyCircle;
+			}else if(self.shaking){
+				if(Math.random()<0.5) {
+					img = images.talkingCircle;
+				}else {
+					img = images.happyCircle;
+				}
+			}else if(self.bored){
+				img = images.whiteCircle;
+			}else{
+				if(self.dragged && !self.shaking) {			
+					img = images.happyCircle;		
+				}else {
+					img = images.sadCircle;
+				}			
+			}
 			if(self.changeable && reverse) {
 				if(Math.random()<RESISTANCE){
 					self.color = "spreader";

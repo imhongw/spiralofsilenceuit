@@ -201,7 +201,11 @@ function Draggable(x,y){
 				if(self.dragged && !self.shaking) {			
 					img = images.whiteCircle;
 				}else if(reverse == true) {
-					img = images.talkingCircle;
+					if(Math.random()<0.5){
+						img = images.talkingCircle;
+					}else {
+						img = images.happyCircle;
+					}
 				}else {
 					img = images.sadCircle;
 				}			
@@ -216,7 +220,11 @@ function Draggable(x,y){
 			if(notCircles == (draggables.length - 1)) {
 				img = images.happyCircle;
 			}else if(self.shaking){
-				img = images.happyCircle;
+				if(Math.random()<0.5) {
+					img = images.happyCircle;
+				}else {
+					img = images.talkingCircle;
+				}
 			}else if(self.bored){
 				img = images.whiteCircle;
 			}else{
