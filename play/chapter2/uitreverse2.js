@@ -20,18 +20,13 @@ function addAsset(name,src){
 	images[name].onload = onImageLoaded;
 	images[name].src = src;
 }
-addAsset("yayTriangle","../img/yay_triangle.png");
-addAsset("yayTriangleBlink","../img/yay_triangle_blink.png");
-addAsset("mehTriangle","../img/meh_triangle.png");
-addAsset("sadTriangle","../img/sad_triangle.png");
-addAsset("yaySquare","../img/yay_square.png");
-addAsset("yaySquareBlink","../img/yay_square_blink.png");
-addAsset("mehSquare","../img/meh_square.png");
-addAsset("sadSquare","../img/sad_square.png");
+
 addAsset("whiteCircle","../img/circle_white.png");
 addAsset("whiteTriangle","../img/triangle_white.png");
 addAsset("yellowTriangle","../img/triangle_yellow.png");
 addAsset("sadCircle","../img/unhappy_circle_white.png");
+addAsset("happyCircle","../img/happy_circle_white.png");
+addAsset("talkingCircle","../img/talking_circle_white.png");
 
 
 var IS_PICKING_UP = false;
@@ -188,15 +183,28 @@ function Draggable(x,y){
 
 		// Draw thing
 		var img;
+		var notCircles = 0;
 		//circles are the good guys
 		if(self.color=="circle"){ 
-			if(self.shaking){
-				img = images.whiteCircle;
-			}else if(self.bored){
-				img = images.whiteCircle;
+			for(var i=0;i<draggables.length;i++){
+				var d = draggables[i];
+				if(d.color!="circle"){
+					notCircles++;
+				}
+			}
+			//console.log(notCircles);
+			if(notCircles==0){
+				img = images.happyCircle;
+			}else if(self.shaking && !reverse){
+				img = images.happyCircle;
+			}else if(self.bored && !reverse){
+				img = images.happyCircle;
 			}else{
 					if(self.dragged && !self.shaking) {			
-						img = images.whiteCircle;
+						img = images.happyCircle;
+					} 
+					else if(reverse == true){
+						img = images.talkingCircle;
 					}else {
 						img = images.sadCircle;
 					}			
@@ -248,7 +256,11 @@ function Draggable(x,y){
 }
 var reverse = false;
 function reverseButton() {
-	reverse = true;
+	if(reverse == false){ 
+		reverse = true;
+	}else {
+		reverse = false;
+	}
 }
 
 var draggables;

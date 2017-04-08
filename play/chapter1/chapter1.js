@@ -23,6 +23,8 @@ addAsset("whiteCircle","../img/circle_white.png");
 addAsset("whiteTriangle","../img/triangle_white.png");
 addAsset("yellowTriangle","../img/triangle_yellow.png");
 addAsset("sadCircle","../img/unhappy_circle_white.png");
+addAsset("happyCircle","../img/happy_circle_white.png");
+addAsset("talkingCircle","../img/talking_circle_white.png");
 
 
 var IS_PICKING_UP = false;
@@ -166,10 +168,10 @@ function Draggable(x,y){
 		ctx.save();
 		ctx.translate(self.x,self.y);
 		if(self.shaking){
-			self.frame+=0.05;
-			ctx.translate(10,70);
+			self.frame+=0.07;
+			ctx.translate(0,20);
 			ctx.rotate(Math.sin(self.frame-(self.x+self.y)/200)*Math.PI*0.05);
-			ctx.translate(0,-50);
+			ctx.translate(0,-20);
 		}
 
 		// Blinking
@@ -198,15 +200,15 @@ function Draggable(x,y){
 			if(self.shaking){
 				img = images.sadCircle;
 			}else if(self.bored){
-				img = images.whiteCircle;
+				img = images.happyCircle;
 			}else{
 				if(self.dragged && !self.shaking && !lastPressed) {				
-					img = images.whiteCircle;
+					img = images.happyCircle;
 				}else {
 					if(pressedTime && !lastPressed && !self.dragged)
-						img = images.sadCircle;
+						img = images.happyCircle;
 					else
-						img = images.whiteCircle;
+						img = images.happyCircle;
 				}
 						
 			}
@@ -241,9 +243,9 @@ function Draggable(x,y){
 			if(self.shaking) {
 				img = images.sadCircle;
 			}else if(self.bored) {
-				img = images.whiteTriangle;
+				img = images.sadCircle;
 			}else {
-				img = images.whiteCircle;
+				img = images.happyCircle;
 				if(self.dragged && !self.shaking && !lastPressed) {
 					img = images.sadCircle;
 				}else {
@@ -251,7 +253,7 @@ function Draggable(x,y){
 						if(Math.random()<0.01)
 							self.color = "noOptriangle";
 					else{
-						img = images.sadCircle;
+						img = images.happyCircle;
 					}
 				}
 			}

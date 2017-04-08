@@ -25,6 +25,8 @@ addAsset("whiteCircle","../img/circle_white.png");
 addAsset("whiteTriangle","../img/triangle_white.png");
 addAsset("yellowTriangle","../img/triangle_yellow.png");
 addAsset("sadCircle","../img/unhappy_circle_white.png");
+addAsset("happyCircle","../img/happy_circle_white.png");
+addAsset("talkingCircle","../img/talking_circle_white.png");
 
 
 var IS_PICKING_UP = false;
@@ -180,25 +182,56 @@ function Draggable(x,y){
 
 		// Draw thing
 		var img;
+		var notCircles = 0;
 		//circles are the good guys
 		if(self.color=="circle"){ 
-			if(self.shaking){
+			for(var i=0;i<draggables.length;i++){
+				var d = draggables[i];
+				if(d.color=="circle2"){
+					notCircles++;
+				}
+			}
+			if(notCircles == (draggables.length - 1)) {
+				img = images.happyCircle;
+			}else if(self.shaking && !reverse){
+				img = images.happyCircle;
+			}else if(self.bored && !reverse){
 				img = images.whiteCircle;
+			}else{
+				if(self.dragged && !self.shaking) {			
+					img = images.whiteCircle;
+				}else if(reverse == true) {
+					img = images.talkingCircle;
+				}else {
+					img = images.sadCircle;
+				}			
+			}
+		}else if(self.color=="circle2"){
+			for(var i=0;i<draggables.length;i++){
+				var d = draggables[i];
+				if(d.color=="circle2"){
+					notCircles++;
+				}
+			}
+			if(notCircles == (draggables.length - 1)) {
+				img = images.happyCircle;
+			}else if(self.shaking){
+				img = images.happyCircle;
 			}else if(self.bored){
 				img = images.whiteCircle;
 			}else{
-					if(self.dragged && !self.shaking) {			
-						img = images.whiteCircle;
-					}else {
-						img = images.sadCircle;
-					}			
+				if(self.dragged && !self.shaking) {			
+					img = images.whiteCircle;		
+				}else {
+					img = images.sadCircle;
+				}			
 			}
 		}else if(self.color == "spreader") {
 			img = images.yellowTriangle;
 			self.dragged = false;
 			if(self.changeable && reverse) {
 				if(Math.random()<0.01){
-					self.color = "circle";
+					self.color = "circle2";
 				}
 			}else {
 				self.color = "spreader";
@@ -242,7 +275,11 @@ function Draggable(x,y){
 }
 var reverse = false;
 function reverseButton() {
-	reverse = true;
+	if(reverse == false){
+		reverse = true;
+	}else {
+		reverse = false;
+	}
 }
 
 var draggables;
